@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center mb-5">
+    <h1>Global Logistics Management System</h1>
+    <p class="text-muted">TechMove Logistics — Enterprise Platform</p>
+</div>
+
+<div class="row g-4 justify-content-center">
+    <div class="col-md-4">
+        <div class="card text-center p-4 shadow-sm">
+            <h4>Contracts</h4>
+            <p class="text-muted">Manage client contracts, SLAs, and signed agreements.</p>
+            <a asp-controller="Contracts" asp-action="Index" class="btn btn-primary">
+                View Contracts
+            </a>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-center p-4 shadow-sm">
+            <h4>Clients</h4>
+            <p class="text-muted">View and manage logistics clients by region.</p>
+            <a asp-controller="Clients" asp-action="Index" class="btn btn-primary">
+                View Clients
+            </a>
+        </div>
+    </div>
+</div>
