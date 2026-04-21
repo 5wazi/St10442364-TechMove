@@ -1,0 +1,66 @@
+﻿@model IEnumerable<PROG7313_TechMove.Models.Contract>
+@{
+    ViewData["Title"] = "Contracts";
+}
+<h2>Contract Management</h2>
+
+<form method="get" class="row g-3 mb-4">
+    <div class="col-md-3">
+        <label class="form-label">From Date</label>
+        <input type="date" name="fromDate" class="form-control" value="@ViewBag.FromDate" />
+    </div>
+    <div class="col-md-3">
+        <label class="form-label">To Date</label>
+        <input type="date" name="toDate" class="form-control" value="@ViewBag.ToDate" />
+    </div>
+    <div class="col-md-3">
+        <label class="form-label">Status</label>
+        <select name="status" class="form-select">
+            <option value="">-- All --</option>
+            @foreach (var s in Enum.GetValues<ContractStatus>())
+            {
+                <option value="@s" selected="@(ViewBag.Status?.ToString() == s.ToString())">@s</option>
+            }
+        </select>
+    </div>
+    <div class="col-md-3 d-flex align-items-end">
+        <button type="submit" class="btn btn-primary me-2">Search</button>
+        <a asp-action="Index" class="btn btn-secondary">Clear</a>
+    </div>
+</form>
+
+<a asp-action="Create" class="btn btn-success mb-3">+ New Contract</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Client</th>
+            <th>Service Level</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>@c.Id</td>
+                <td>@c.Client?.Name</td>
+                <td>@c.ServiceLevel</td>
+                <td>@c.StartDate.ToShortDateString()</td>
+                <td>@c.EndDate.ToShortDateString()</td>
+                <td>
+                    <span class="badge bg-@(c.Status == ContractStatus.Active ? "success" : c.Status == ContractStatus.Expired ? "danger" : "secondary")">
+                        @c.Status
+                    </span>
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@c.Id" class="btn btn-sm btn-info">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

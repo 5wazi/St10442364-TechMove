@@ -1,0 +1,51 @@
+﻿@model PROG7313_TechMove.ViewModels.ContractCreateViewModel
+@{
+    ViewData["Title"] = "Create Contract";
+}
+<h2>New Contract</h2>
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="mb-3">
+                <label asp-for="ClientId" class="form-label"></label>
+                <select asp-for="ClientId" asp-items="ViewBag.Clients" class="form-select">
+                    <option value="">-- Select Client --</option>
+                </select>
+                <span asp-validation-for="ClientId" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="StartDate" class="form-label"></label>
+                <input asp-for="StartDate" class="form-control" type="date" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="EndDate" class="form-label"></label>
+                <input asp-for="EndDate" class="form-control" type="date" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="ServiceLevel" class="form-label"></label>
+                <select asp-for="ServiceLevel" class="form-select">
+                    <option>Bronze</option>
+                    <option>Silver</option>
+                    <option>Gold</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label asp-for="SignedAgreement" class="form-label"></label>
+                <input asp-for="SignedAgreement" class="form-control" type="file" accept=".pdf" />
+                <div class="form-text">PDF only, max 10 MB.</div>
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+}
