@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PROG7313_TechMove")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dd5c61374e3336913cb3682440bdcb7d3ed2ea3e")]
 [assembly: System.Reflection.AssemblyProductAttribute("PROG7313_TechMove")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PROG7313_TechMove")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

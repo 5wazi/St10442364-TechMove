@@ -1,51 +1,202 @@
-﻿@model PROG7313_TechMove.ViewModels.ContractCreateViewModel
-@{
-    ViewData["Title"] = "Create Contract";
-}
-<h2>New Contract</h2>
-<div class="row">
-    <div class="col-md-6">
-        <form asp-action="Create" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+﻿@model PROG7313_TechMove.Models.Contract
+@using PROG7313_TechMove.Models
 
-            <div class="mb-3">
-                <label asp-for="ClientId" class="form-label"></label>
-                <select asp-for="ClientId" asp-items="ViewBag.Clients" class="form-select">
-                    <option value="">-- Select Client --</option>
-                </select>
-                <span asp-validation-for="ClientId" class="text-danger"></span>
+@{
+    ViewData["Title"] = "New Contract";
+}
+
+<style>
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 2rem;
+    }
+
+    .page-title-block .accent-line {
+        display: inline-block;
+        width: 32px;
+        height: 2px;
+        background: var(--accent);
+        border-radius: 2px;
+        margin-bottom: 0.5rem;
+    }
+
+    .page-title-block h2 {
+        font-family: 'DM Serif Display', serif;
+        font-weight: 400;
+        font-size: 1.7rem;
+        color: var(--text-main);
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+        .page-title-block h2 i {
+            color: var(--accent);
+            font-size: 1.3rem;
+        }
+
+    .form-card {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .form-card-header {
+        background: #0f172a;
+        padding: 0.9rem 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: 'IBM Plex Sans', sans-serif;
+        font-weight: 500;
+        font-size: 0.68rem;
+        color: #475569;
+        text-transform: uppercase;
+        letter-spacing: 1.4px;
+    }
+
+        .form-card-header i {
+            color: var(--accent);
+            font-size: 0.95rem;
+        }
+
+    .form-card-body {
+        padding: 1.8rem 1.5rem;
+    }
+
+    .form-label {
+        font-weight: 500;
+        font-size: 0.82rem;
+        color: #374151;
+        margin-bottom: 0.4rem;
+        display: block;
+        letter-spacing: 0.1px;
+    }
+
+    .form-control, .form-select {
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        padding: 0.55rem 0.85rem;
+        font-size: 0.875rem;
+        background: #f8fafc;
+        color: var(--text-main);
+        transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.15);
+            background: #fff;
+            outline: none;
+        }
+
+    .form-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #f1f5f9;
+    }
+
+    .btn-cancel {
+        background: transparent;
+        border: 1px solid #e2e8f0;
+        color: #64748b;
+        border-radius: 6px;
+        padding: 0.5rem 1.4rem;
+        font-size: 0.875rem;
+        font-weight: 400;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        transition: background 0.15s, border-color 0.15s;
+    }
+
+        .btn-cancel:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+            color: #374151;
+        }
+
+    .alert-danger {
+        background: #fef2f2;
+        border-color: #fca5a5;
+        color: #7f1d1d;
+        border-radius: 8px;
+        font-size: 0.85rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .text-danger {
+        font-size: 0.78rem;
+    }
+</style>
+
+<div class="page-header">
+    <div class="page-title-block">
+        <div class="accent-line"></div>
+        <h2><i class="bi bi-file-earmark-plus"></i> New Contract</h2>
+    </div>
+    <a asp-action="Index" class="btn btn-secondary">
+        <i class="bi bi-arrow-left me-1"></i> Back
+    </a>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-md-7">
+        <div class="form-card">
+            <div class="form-card-header">
+                <i class="bi bi-file-earmark-text"></i> Contract Details
             </div>
-            <div class="mb-3">
-                <label asp-for="StartDate" class="form-label"></label>
-                <input asp-for="StartDate" class="form-control" type="date" />
-                <span asp-validation-for="StartDate" class="text-danger"></span>
+            <div class="form-card-body">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                    <!-- CLIENT -->
+                    <div class="mb-3">
+                        <label asp-for="ClientId" class="form-label">Client</label>
+                        <select asp-for="ClientId" class="form-select" asp-items="ViewBag.ClientId"></select>
+                    </div>
+
+                    <!-- SERVICE LEVEL -->
+                    <div class="mb-3">
+                        <label asp-for="ServiceLevel" class="form-label"></label>
+                        <input asp-for="ServiceLevel" class="form-control" placeholder="e.g. Premium Logistics" />
+                    </div>
+
+                    <!-- STATUS -->
+                    <div class="mb-3">
+                        <label asp-for="Status" class="form-label"></label>
+                        <select asp-for="Status" class="form-select"
+                                asp-items="Html.GetEnumSelectList<ContractStatus>()"></select>
+                    </div>
+
+                    <!-- END DATE -->
+                    <div class="mb-4">
+                        <label asp-for="EndDate" class="form-label"></label>
+                        <input asp-for="EndDate" type="date" class="form-control" />
+                    </div>
+
+                    <div class="form-actions">
+                        <a asp-action="Index" class="btn-cancel">Cancel</a>
+                        <button type="submit" class="btn btn-primary px-4">
+                            <i class="bi bi-check-circle me-1"></i> Save Contract
+                        </button>
+                    </div>
+                </form>
             </div>
-            <div class="mb-3">
-                <label asp-for="EndDate" class="form-label"></label>
-                <input asp-for="EndDate" class="form-control" type="date" />
-                <span asp-validation-for="EndDate" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label asp-for="ServiceLevel" class="form-label"></label>
-                <select asp-for="ServiceLevel" class="form-select">
-                    <option>Bronze</option>
-                    <option>Silver</option>
-                    <option>Gold</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label asp-for="SignedAgreement" class="form-label"></label>
-                <input asp-for="SignedAgreement" class="form-control" type="file" accept=".pdf" />
-                <div class="form-text">PDF only, max 10 MB.</div>
-            </div>
-            <button type="submit" class="btn btn-primary">Create</button>
-            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
-        </form>
+        </div>
     </div>
 </div>
+
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-
 }

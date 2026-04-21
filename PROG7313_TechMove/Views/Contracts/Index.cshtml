@@ -2,65 +2,308 @@
 @{
     ViewData["Title"] = "Contracts";
 }
-<h2>Contract Management</h2>
 
-<form method="get" class="row g-3 mb-4">
-    <div class="col-md-3">
-        <label class="form-label">From Date</label>
-        <input type="date" name="fromDate" class="form-control" value="@ViewBag.FromDate" />
-    </div>
-    <div class="col-md-3">
-        <label class="form-label">To Date</label>
-        <input type="date" name="toDate" class="form-control" value="@ViewBag.ToDate" />
-    </div>
-    <div class="col-md-3">
-        <label class="form-label">Status</label>
-        <select name="status" class="form-select">
-            <option value="">-- All --</option>
-            @foreach (var s in Enum.GetValues<ContractStatus>())
-            {
-                <option value="@s" selected="@(ViewBag.Status?.ToString() == s.ToString())">@s</option>
-            }
-        </select>
-    </div>
-    <div class="col-md-3 d-flex align-items-end">
-        <button type="submit" class="btn btn-primary me-2">Search</button>
-        <a asp-action="Index" class="btn btn-secondary">Clear</a>
-    </div>
-</form>
+<style>
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 2rem;
+    }
 
-<a asp-action="Create" class="btn btn-success mb-3">+ New Contract</a>
+    .page-title-block .accent-line {
+        display: inline-block;
+        width: 32px;
+        height: 2px;
+        background: var(--accent);
+        border-radius: 2px;
+        margin-bottom: 0.5rem;
+    }
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Client</th>
-            <th>Service Level</th>
-            <th>Start</th>
-            <th>End</th>
-            <th>Status</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var c in Model)
-        {
-            <tr>
-                <td>@c.Id</td>
-                <td>@c.Client?.Name</td>
-                <td>@c.ServiceLevel</td>
-                <td>@c.StartDate.ToShortDateString()</td>
-                <td>@c.EndDate.ToShortDateString()</td>
-                <td>
-                    <span class="badge bg-@(c.Status == ContractStatus.Active ? "success" : c.Status == ContractStatus.Expired ? "danger" : "secondary")">
-                        @c.Status
-                    </span>
-                </td>
-                <td>
-                    <a asp-action="Details" asp-route-id="@c.Id" class="btn btn-sm btn-info">Details</a>
-                </td>
-            </tr>
+    .page-title-block h2 {
+        font-family: 'DM Serif Display', serif;
+        font-weight: 400;
+        font-size: 1.7rem;
+        color: var(--text-main);
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+        .page-title-block h2 i {
+            font-size: 1.3rem;
+            color: var(--accent);
         }
-    </tbody>
-</table>
+
+    /* Filter bar */
+    .filter-bar {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 1.2rem 1.5rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+        .filter-bar .form-label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-bottom: 0.35rem;
+            display: block;
+        }
+
+        .filter-bar .form-control,
+        .filter-bar .form-select {
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            background: #f8fafc;
+            color: var(--text-main);
+            padding: 0.5rem 0.85rem;
+            transition: border-color 0.15s, box-shadow 0.15s;
+        }
+
+            .filter-bar .form-control:focus,
+            .filter-bar .form-select:focus {
+                border-color: var(--accent);
+                box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.15);
+                background: #fff;
+                outline: none;
+            }
+
+    .btn-search {
+        background: var(--accent);
+        border: none;
+        color: #0f172a;
+        font-weight: 600;
+        font-size: 0.85rem;
+        border-radius: 6px;
+        padding: 0.5rem 1.2rem;
+        transition: background 0.15s;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+        .btn-search:hover {
+            background: var(--accent-dark);
+            color: #0f172a;
+        }
+
+    .btn-clear {
+        background: transparent;
+        border: 1px solid #e2e8f0;
+        color: #64748b;
+        font-size: 0.85rem;
+        border-radius: 6px;
+        padding: 0.5rem 1.1rem;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        transition: background 0.15s;
+    }
+
+        .btn-clear:hover {
+            background: #f1f5f9;
+            color: #374151;
+        }
+
+    /* Table card */
+    .contracts-card {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .contracts-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 0;
+    }
+
+        .contracts-table thead tr {
+            background: #0f172a;
+        }
+
+        .contracts-table thead th {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-weight: 500;
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            color: #64748b;
+            padding: 0.9rem 1.2rem;
+            border: none;
+        }
+
+        .contracts-table tbody tr {
+            border-bottom: 1px solid #f1f5f9;
+            transition: background 0.15s;
+        }
+
+            .contracts-table tbody tr:last-child {
+                border-bottom: none;
+            }
+
+            .contracts-table tbody tr:hover {
+                background: #f8fafc;
+            }
+
+        .contracts-table tbody td {
+            padding: 0.85rem 1.2rem;
+            font-size: 0.875rem;
+            color: #374151;
+            vertical-align: middle;
+        }
+
+    .contract-id {
+        font-family: 'IBM Plex Sans', sans-serif;
+        font-size: 0.73rem;
+        color: #94a3b8;
+        font-weight: 500;
+    }
+
+    .client-name {
+        font-weight: 600;
+        color: var(--text-main);
+    }
+
+    .date-cell {
+        font-size: 0.83rem;
+        color: #64748b;
+    }
+
+    .status-badge {
+        display: inline-block;
+        border-radius: 20px;
+        padding: 3px 10px;
+        font-size: 0.73rem;
+        font-weight: 500;
+    }
+
+    .status-active {
+        background: #f0fdf4;
+        color: #166534;
+        border: 1px solid #bbf7d0;
+    }
+
+    .status-expired {
+        background: #fef2f2;
+        color: #b91c1c;
+        border: 1px solid #fca5a5;
+    }
+
+    .status-inactive {
+        background: #f1f5f9;
+        color: #64748b;
+        border: 1px solid #e2e8f0;
+    }
+
+    .btn-details {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--text-muted);
+        border-radius: 6px;
+        padding: 4px 14px;
+        font-size: 0.78rem;
+        font-weight: 500;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        transition: border-color 0.15s, color 0.15s, background 0.15s;
+    }
+
+        .btn-details:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: rgba(201, 168, 76, 0.05);
+        }
+</style>
+
+<div class="page-header">
+    <div class="page-title-block">
+        <div class="accent-line"></div>
+        <h2><i class="bi bi-file-earmark-text"></i> Contracts</h2>
+    </div>
+    <a asp-action="Create" class="btn btn-primary">
+        <i class="bi bi-plus-circle me-1"></i> New Contract
+    </a>
+</div>
+
+<!-- Filter Bar -->
+<div class="filter-bar">
+    <form method="get" class="row g-3 align-items-end">
+        <div class="col-md-3">
+            <label class="form-label">From Date</label>
+            <input type="date" name="fromDate" class="form-control" value="@ViewBag.FromDate" />
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">To Date</label>
+            <input type="date" name="toDate" class="form-control" value="@ViewBag.ToDate" />
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Status</label>
+            <select name="status" class="form-select">
+                <option value="">All Statuses</option>
+                @foreach (var s in Enum.GetValues<ContractStatus>())
+                {
+                    <option value="@s" selected="@(ViewBag.Status?.ToString() == s.ToString())">@s</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-3 d-flex gap-2">
+            <button type="submit" class="btn-search">
+                <i class="bi bi-search"></i> Search
+            </button>
+            <a asp-action="Index" class="btn-clear">Clear</a>
+        </div>
+    </form>
+</div>
+
+<!-- Contracts Table -->
+<div class="contracts-card">
+    <table class="contracts-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Client</th>
+                <th>Service Level</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var c in Model)
+            {
+                <tr>
+                    <td><span class="contract-id">#@c.Id</span></td>
+                    <td><span class="client-name">@c.Client?.Name</span></td>
+                    <td>@c.ServiceLevel</td>
+                    <td><span class="date-cell">@c.StartDate.ToShortDateString()</span></td>
+                    <td><span class="date-cell">@c.EndDate.ToShortDateString()</span></td>
+                    <td>
+                        <span class="status-badge @(c.Status == ContractStatus.Active ? "status-active" : c.Status == ContractStatus.Expired ? "status-expired" : "status-inactive")">
+                            @c.Status
+                        </span>
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@c.Id" class="btn-details">
+                            <i class="bi bi-eye"></i> Details
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@using PROG7313_TechMove.Models

@@ -66,15 +66,15 @@ namespace PROG7313_TechMove.Data
 
             // Seed data
             modelBuilder.Entity<Client>().HasData(
-                new Client { Id = 1, Name = "Global Freight Ltd", ContactDetails = "info@globalfreight.com | +27 31 000 0001", Region = "Africa" },
-                new Client { Id = 2, Name = "Euro Cargo GmbH", ContactDetails = "contact@eurocargo.de | +49 30 000 0002", Region = "Europe" },
-                new Client { Id = 3, Name = "Pacific Shipping Co", ContactDetails = "ops@pacshipping.com | +1 310 000 0003", Region = "Americas" }
+                new Client { Id = 1, Name = "TransAfrica Logistics", ContactDetails = "contact@transafrica.co.za | +27 31 765 1122", Region = "Africa"},
+                new Client { Id = 2, Name = "Nordic Freight Solutions", ContactDetails = "info@nordicfreight.se | +46 8 442 7788", Region = "Europe" },
+                new Client { Id = 3, Name = "Atlantic Cargo Lines", ContactDetails = "support@atlanticcargo.com | +1 212 555 9812", Region = "Americas" }
             );
 
             modelBuilder.Entity<Contract>().HasData(
-                new Contract { Id = 1, ClientId = 1, StartDate = new DateTime(2025, 1, 1), EndDate = new DateTime(2026, 12, 31), Status = ContractStatus.Active, ServiceLevel = "Gold", SignedAgreementPath = null, SignedAgreementFileName = null },
-                new Contract { Id = 2, ClientId = 2, StartDate = new DateTime(2024, 6, 1), EndDate = new DateTime(2025, 5, 31), Status = ContractStatus.Expired, ServiceLevel = "Silver", SignedAgreementPath = null, SignedAgreementFileName = null },
-                new Contract { Id = 3, ClientId = 3, StartDate = new DateTime(2026, 1, 1), EndDate = new DateTime(2026, 12, 31), Status = ContractStatus.Draft, ServiceLevel = "Bronze", SignedAgreementPath = null, SignedAgreementFileName = null }
+                new Contract { Id = 1, ClientId = 1, StartDate = new DateTime(2025, 1, 1), EndDate = new DateTime(2026, 12, 31), Status = ContractStatus.Active, ServiceLevel = "Enterprise Supply Chain", SignedAgreementPath = null, SignedAgreementFileName = null},
+                new Contract { Id = 2, ClientId = 2, StartDate = new DateTime(2024, 6, 1), EndDate = new DateTime(2025, 5, 31), Status = ContractStatus.Expired, ServiceLevel = "Standard Freight", SignedAgreementPath = null, SignedAgreementFileName = null},
+                new Contract { Id = 3, ClientId = 3, StartDate = new DateTime(2026, 1, 1), EndDate = new DateTime(2026, 12, 31), Status = ContractStatus.Draft, ServiceLevel = "Express Delivery", SignedAgreementPath = null, SignedAgreementFileName = null}
             );
         }
     }

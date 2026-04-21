@@ -3,93 +3,330 @@
     ViewData["Title"] = Model.Name;
 }
 
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h2><i class="bi bi-person-circle me-2"></i>@Model.Name</h2>
+<style>
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 2rem;
+    }
+
+    .page-title-block .accent-line {
+        display: inline-block;
+        width: 32px;
+        height: 2px;
+        background: var(--accent);
+        border-radius: 2px;
+        margin-bottom: 0.5rem;
+    }
+
+    .page-title-block h2 {
+        font-family: 'DM Serif Display', serif;
+        font-weight: 400;
+        font-size: 1.7rem;
+        color: var(--text-main);
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+        .page-title-block h2 i {
+            color: var(--accent);
+            font-size: 1.3rem;
+        }
+
+    .info-card {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        height: 100%;
+    }
+
+    .info-card-header {
+        background: #0f172a;
+        padding: 0.85rem 1.3rem;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        font-family: 'IBM Plex Sans', sans-serif;
+        font-weight: 500;
+        font-size: 0.68rem;
+        color: #475569;
+        text-transform: uppercase;
+        letter-spacing: 1.4px;
+    }
+
+        .info-card-header i {
+            color: var(--accent);
+        }
+
+    .info-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        .info-table tr {
+            border-bottom: 1px solid #f8fafc;
+        }
+
+            .info-table tr:last-child {
+                border-bottom: none;
+            }
+
+        .info-table th {
+            padding: 0.85rem 1.3rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            width: 38%;
+            vertical-align: top;
+        }
+
+        .info-table td {
+            padding: 0.85rem 1.3rem 0.85rem 0;
+            font-size: 0.875rem;
+            color: var(--text-main);
+            vertical-align: top;
+        }
+
+    .badge-region {
+        display: inline-block;
+        background: rgba(201, 168, 76, 0.1);
+        color: #92701a;
+        border: 1px solid rgba(201, 168, 76, 0.3);
+        border-radius: 20px;
+        padding: 3px 10px;
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+
+    .contract-count-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        background: #f1f5f9;
+        color: #374151;
+        border: 1px solid #e2e8f0;
+        border-radius: 20px;
+        padding: 3px 10px;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    /* Contracts table */
+    .contracts-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        .contracts-table thead tr {
+            background: #0f172a;
+        }
+
+        .contracts-table thead th {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-weight: 500;
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            color: #64748b;
+            padding: 0.85rem 1.1rem;
+            border: none;
+        }
+
+        .contracts-table tbody tr {
+            border-bottom: 1px solid #f1f5f9;
+            transition: background 0.15s;
+        }
+
+            .contracts-table tbody tr:last-child {
+                border-bottom: none;
+            }
+
+            .contracts-table tbody tr:hover {
+                background: #f8fafc;
+            }
+
+        .contracts-table tbody td {
+            padding: 0.8rem 1.1rem;
+            font-size: 0.86rem;
+            color: #374151;
+            vertical-align: middle;
+        }
+
+    .contract-id {
+        font-family: 'IBM Plex Sans', sans-serif;
+        font-size: 0.73rem;
+        color: #94a3b8;
+        font-weight: 500;
+    }
+
+    .status-badge {
+        display: inline-block;
+        border-radius: 20px;
+        padding: 3px 10px;
+        font-size: 0.73rem;
+        font-weight: 500;
+    }
+
+    .status-active {
+        background: #f0fdf4;
+        color: #166534;
+        border: 1px solid #bbf7d0;
+    }
+
+    .status-expired {
+        background: #fef2f2;
+        color: #b91c1c;
+        border: 1px solid #fca5a5;
+    }
+
+    .status-inactive {
+        background: #f1f5f9;
+        color: #64748b;
+        border: 1px solid #e2e8f0;
+    }
+
+    .btn-view {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--text-muted);
+        border-radius: 6px;
+        padding: 4px 12px;
+        font-size: 0.76rem;
+        font-weight: 500;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        transition: border-color 0.15s, color 0.15s, background 0.15s;
+    }
+
+        .btn-view:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: rgba(201, 168, 76, 0.05);
+        }
+
+    .empty-state {
+        text-align: center;
+        padding: 3rem 2rem;
+    }
+
+        .empty-state i {
+            font-size: 2rem;
+            color: #cbd5e1;
+            display: block;
+            margin-bottom: 0.75rem;
+        }
+
+        .empty-state p {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            margin: 0;
+        }
+</style>
+
+<div class="page-header">
+    <div class="page-title-block">
+        <div class="accent-line"></div>
+        <h2><i class="bi bi-person-circle"></i> @Model.Name</h2>
+    </div>
     <a asp-action="Index" class="btn btn-secondary">
         <i class="bi bi-arrow-left me-1"></i> Back to Clients
     </a>
 </div>
 
 <div class="row g-4">
+
+    <!-- Client Info -->
     <div class="col-md-5">
-        <div class="card shadow-sm">
-            <div class="card-header bg-primary text-white">
-                <i class="bi bi-info-circle me-2"></i>Client Information
+        <div class="info-card">
+            <div class="info-card-header">
+                <i class="bi bi-info-circle"></i> Client Information
             </div>
-            <div class="card-body">
-                <table class="table table-borderless mb-0">
-                    <tr>
-                        <th width="40%">Name</th>
-                        <td>@Model.Name</td>
-                    </tr>
-                    <tr>
-                        <th>Contact</th>
-                        <td>@Model.ContactDetails</td>
-                    </tr>
-                    <tr>
-                        <th>Region</th>
-                        <td><span class="badge bg-info text-dark">@Model.Region</span></td>
-                    </tr>
-                    <tr>
-                        <th>Total Contracts</th>
-                        <td>@Model.Contracts.Count</td>
-                    </tr>
-                </table>
-            </div>
+            <table class="info-table">
+                <tr>
+                    <th>Name</th>
+                    <td>@Model.Name</td>
+                </tr>
+                <tr>
+                    <th>Contact</th>
+                    <td>@Model.ContactDetails</td>
+                </tr>
+                <tr>
+                    <th>Region</th>
+                    <td><span class="badge-region">@Model.Region</span></td>
+                </tr>
+                <tr>
+                    <th>Total Contracts</th>
+                    <td>
+                        <span class="contract-count-badge">
+                            <i class="bi bi-file-earmark-text" style="font-size:0.8rem;"></i>
+                            @Model.Contracts.Count
+                        </span>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 
+    <!-- Contracts -->
     <div class="col-md-7">
-        <div class="card shadow-sm">
-            <div class="card-header bg-dark text-white">
-                <i class="bi bi-file-earmark-text me-2"></i>Contracts
+        <div class="info-card">
+            <div class="info-card-header">
+                <i class="bi bi-file-earmark-text"></i> Contracts
             </div>
-            <div class="card-body p-0">
-                @if (!Model.Contracts.Any())
-                {
-                    <div class="text-center text-muted py-4">
-                        <i class="bi bi-inbox d-block fs-2 mb-2"></i>
-                        No contracts for this client yet.
-                    </div>
-                }
-                else
-                {
-                    <table class="table table-hover mb-0">
-                        <thead class="table-light">
+            @if (!Model.Contracts.Any())
+            {
+                <div class="empty-state">
+                    <i class="bi bi-inbox"></i>
+                    <p>No contracts for this client yet.</p>
+                </div>
+            }
+            else
+            {
+                <table class="contracts-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Service Level</th>
+                            <th>Status</th>
+                            <th>Expires</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var c in Model.Contracts)
+                        {
                             <tr>
-                                <th>#</th>
-                                <th>Service Level</th>
-                                <th>Status</th>
-                                <th>Expires</th>
-                                <th></th>
+                                <td><span class="contract-id">#@c.Id</span></td>
+                                <td>@c.ServiceLevel</td>
+                                <td>
+                                    <span class="status-badge @(c.Status == ContractStatus.Active ? "status-active" : c.Status == ContractStatus.Expired ? "status-expired" : "status-inactive")">
+                                        @c.Status
+                                    </span>
+                                </td>
+                                <td style="color:#94a3b8; font-size:0.83rem;">@c.EndDate.ToShortDateString()</td>
+                                <td>
+                                    <a asp-controller="Contracts" asp-action="Details"
+                                       asp-route-id="@c.Id" class="btn-view">
+                                        <i class="bi bi-eye"></i> View
+                                    </a>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var c in Model.Contracts)
-                            {
-                                <tr>
-                                    <td>#@c.Id</td>
-                                    <td>@c.ServiceLevel</td>
-                                    <td>
-                                        <span class="badge bg-@(c.Status == ContractStatus.Active ? "success" : c.Status == ContractStatus.Expired ? "danger" : "secondary")">
-                                            @c.Status
-                                        </span>
-                                    </td>
-                                    <td>@c.EndDate.ToShortDateString()</td>
-                                    <td>
-                                        <a asp-controller="Contracts" asp-action="Details"
-                                           asp-route-id="@c.Id" class="btn btn-sm btn-outline-primary">
-                                            View
-                                        </a>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                }
-            </div>
+                        }
+                    </tbody>
+                </table>
+            }
         </div>
     </div>
+
 </div>
 
 @using PROG7313_TechMove.Models

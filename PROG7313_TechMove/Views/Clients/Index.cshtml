@@ -3,59 +3,226 @@
     ViewData["Title"] = "Clients";
 }
 
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h2><i class="bi bi-people me-2"></i>Clients</h2>
-    <a asp-action="Create" class="btn btn-success">
+<style>
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 2rem;
+    }
+
+    .page-title-block .accent-line {
+        display: inline-block;
+        width: 32px;
+        height: 2px;
+        background: var(--accent);
+        border-radius: 2px;
+        margin-bottom: 0.5rem;
+    }
+
+    .page-title-block h2 {
+        font-family: 'DM Serif Display', serif;
+        font-weight: 400;
+        font-size: 1.7rem;
+        color: var(--text-main);
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+        .page-title-block h2 i {
+            font-size: 1.3rem;
+            color: var(--accent);
+        }
+
+    .clients-card {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .clients-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 0;
+    }
+
+        .clients-table thead tr {
+            background: #0f172a;
+        }
+
+        .clients-table thead th {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-weight: 500;
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            color: #64748b;
+            padding: 0.9rem 1.2rem;
+            border: none;
+        }
+
+        .clients-table tbody tr {
+            border-bottom: 1px solid #f1f5f9;
+            transition: background 0.15s;
+        }
+
+            .clients-table tbody tr:last-child {
+                border-bottom: none;
+            }
+
+            .clients-table tbody tr:hover {
+                background: #f8fafc;
+            }
+
+        .clients-table tbody td {
+            padding: 0.9rem 1.2rem;
+            font-size: 0.875rem;
+            color: #374151;
+            vertical-align: middle;
+        }
+
+    .client-id {
+        font-family: 'IBM Plex Sans', sans-serif;
+        font-size: 0.73rem;
+        color: #94a3b8;
+        font-weight: 500;
+    }
+
+    .client-name {
+        font-weight: 600;
+        color: var(--text-main);
+        font-size: 0.9rem;
+    }
+
+    .badge-region {
+        display: inline-block;
+        background: rgba(201, 168, 76, 0.1);
+        color: #92701a;
+        border: 1px solid rgba(201, 168, 76, 0.3);
+        border-radius: 20px;
+        padding: 3px 10px;
+        font-size: 0.73rem;
+        font-weight: 500;
+    }
+
+    .badge-contracts {
+        display: inline-block;
+        background: #f1f5f9;
+        color: #64748b;
+        border: 1px solid #e2e8f0;
+        border-radius: 20px;
+        padding: 3px 10px;
+        font-size: 0.73rem;
+        font-weight: 500;
+    }
+
+    .btn-details {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--text-muted);
+        border-radius: 6px;
+        padding: 4px 14px;
+        font-size: 0.78rem;
+        font-weight: 500;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        transition: border-color 0.15s, color 0.15s, background 0.15s;
+    }
+
+        .btn-details:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: rgba(201, 168, 76, 0.05);
+        }
+
+    .empty-state {
+        text-align: center;
+        padding: 4rem 2rem;
+    }
+
+    .empty-state-icon {
+        width: 60px;
+        height: 60px;
+        background: #f1f5f9;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.7rem;
+        color: #94a3b8;
+        margin: 0 auto 1.2rem;
+    }
+
+    .empty-state h5 {
+        font-family: 'IBM Plex Sans', sans-serif;
+        font-weight: 600;
+        color: var(--text-main);
+        margin-bottom: 0.4rem;
+    }
+
+    .empty-state p {
+        color: #94a3b8;
+        font-size: 0.875rem;
+        margin-bottom: 1.2rem;
+    }
+</style>
+
+<div class="page-header">
+    <div class="page-title-block">
+        <div class="accent-line"></div>
+        <h2><i class="bi bi-people"></i> Clients</h2>
+    </div>
+    <a asp-action="Create" class="btn btn-primary">
         <i class="bi bi-plus-circle me-1"></i> New Client
     </a>
 </div>
 
-<div class="card shadow-sm">
-    <div class="card-body p-0">
-        @if (!Model.Any())
-        {
-            <div class="text-center text-muted py-5">
-                <i class="bi bi-people fs-1 d-block mb-3"></i>
-                <p>No clients found. Add your first client to get started.</p>
-                <a asp-action="Create" class="btn btn-primary">Add Client</a>
-            </div>
-        }
-        else
-        {
-            <table class="table table-hover mb-0">
-                <thead class="table-dark">
+<div class="clients-card">
+    @if (!Model.Any())
+    {
+        <div class="empty-state">
+            <div class="empty-state-icon"><i class="bi bi-people"></i></div>
+            <h5>No clients yet</h5>
+            <p>Add your first client to get started.</p>
+            <a asp-action="Create" class="btn btn-primary">Add Client</a>
+        </div>
+    }
+    else
+    {
+        <table class="clients-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Contact Details</th>
+                    <th>Region</th>
+                    <th>Contracts</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var c in Model)
+                {
                     <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>Contact Details</th>
-                        <th>Region</th>
-                        <th>Contracts</th>
-                        <th>Actions</th>
+                        <td><span class="client-id">#@c.Id</span></td>
+                        <td><span class="client-name">@c.Name</span></td>
+                        <td style="font-size:0.83rem; color:#64748b;">@c.ContactDetails</td>
+                        <td><span class="badge-region">@c.Region</span></td>
+                        <td><span class="badge-contracts">@c.Contracts.Count contract(s)</span></td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@c.Id" class="btn-details">
+                                <i class="bi bi-eye"></i> Details
+                            </a>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach (var c in Model)
-                    {
-                        <tr>
-                            <td>@c.Id</td>
-                            <td class="fw-bold">@c.Name</td>
-                            <td class="text-muted small">@c.ContactDetails</td>
-                            <td><span class="badge bg-info text-dark">@c.Region</span></td>
-                            <td>
-                                <span class="badge bg-secondary">
-                                    @c.Contracts.Count contract(s)
-                                </span>
-                            </td>
-                            <td>
-                                <a asp-action="Details" asp-route-id="@c.Id"
-                                   class="btn btn-sm btn-outline-primary">
-                                    <i class="bi bi-eye me-1"></i>Details
-                                </a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        }
-    </div>
+                }
+            </tbody>
+        </table>
+    }
 </div>

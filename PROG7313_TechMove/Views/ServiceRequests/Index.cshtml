@@ -4,67 +4,284 @@
     ViewData["Title"] = "Service Requests";
 }
 
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h2><i class="bi bi-clipboard-check me-2"></i>All Service Requests</h2>
+<style>
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 2rem;
+    }
+
+    .page-title-block .accent-line {
+        display: inline-block;
+        width: 32px;
+        height: 2px;
+        background: var(--accent);
+        border-radius: 2px;
+        margin-bottom: 0.5rem;
+    }
+
+    .page-title-block h2 {
+        font-family: 'DM Serif Display', serif;
+        font-weight: 400;
+        font-size: 1.7rem;
+        color: var(--text-main);
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+        .page-title-block h2 i {
+            font-size: 1.3rem;
+            color: var(--accent);
+        }
+
+    .sr-card {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .sr-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 0;
+    }
+
+        .sr-table thead tr {
+            background: #0f172a;
+        }
+
+        .sr-table thead th {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-weight: 500;
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            color: #64748b;
+            padding: 0.9rem 1.2rem;
+            border: none;
+        }
+
+        .sr-table tbody tr {
+            border-bottom: 1px solid #f1f5f9;
+            transition: background 0.15s;
+        }
+
+            .sr-table tbody tr:last-child {
+                border-bottom: none;
+            }
+
+            .sr-table tbody tr:hover {
+                background: #f8fafc;
+            }
+
+        .sr-table tbody td {
+            padding: 0.85rem 1.2rem;
+            font-size: 0.875rem;
+            color: #374151;
+            vertical-align: middle;
+        }
+
+    .sr-id {
+        font-family: 'IBM Plex Sans', sans-serif;
+        font-size: 0.73rem;
+        color: #94a3b8;
+        font-weight: 500;
+    }
+
+    .contract-link {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.83rem;
+        transition: opacity 0.15s;
+    }
+
+        .contract-link:hover {
+            opacity: 0.75;
+        }
+
+    .client-name {
+        font-weight: 600;
+        color: var(--text-main);
+    }
+
+    .desc-cell {
+        max-width: 200px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #64748b;
+        font-size: 0.85rem;
+    }
+
+    .cost-usd {
+        color: #374151;
+    }
+
+    .cost-zar {
+        color: #166534;
+        font-weight: 600;
+    }
+
+    .date-cell {
+        font-size: 0.8rem;
+        color: #94a3b8;
+    }
+
+    .status-badge {
+        display: inline-block;
+        border-radius: 20px;
+        padding: 3px 10px;
+        font-size: 0.73rem;
+        font-weight: 500;
+    }
+
+    .sr-status-completed {
+        background: #f0fdf4;
+        color: #166534;
+        border: 1px solid #bbf7d0;
+    }
+
+    .sr-status-cancelled {
+        background: #fef2f2;
+        color: #b91c1c;
+        border: 1px solid #fca5a5;
+    }
+
+    .sr-status-inprogress {
+        background: rgba(201,168,76,0.1);
+        color: #92701a;
+        border: 1px solid rgba(201,168,76,0.3);
+    }
+
+    .sr-status-default {
+        background: #f1f5f9;
+        color: #64748b;
+        border: 1px solid #e2e8f0;
+    }
+
+    .btn-view {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--text-muted);
+        border-radius: 6px;
+        padding: 4px 14px;
+        font-size: 0.78rem;
+        font-weight: 500;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        transition: border-color 0.15s, color 0.15s, background 0.15s;
+    }
+
+        .btn-view:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: rgba(201, 168, 76, 0.05);
+        }
+
+    .empty-state {
+        text-align: center;
+        padding: 4rem 2rem;
+    }
+
+    .empty-state-icon {
+        width: 60px;
+        height: 60px;
+        background: #f1f5f9;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.7rem;
+        color: #94a3b8;
+        margin: 0 auto 1.2rem;
+    }
+
+    .empty-state h5 {
+        font-family: 'IBM Plex Sans', sans-serif;
+        font-weight: 600;
+        color: var(--text-main);
+        margin-bottom: 0.4rem;
+    }
+
+    .empty-state p {
+        color: #94a3b8;
+        font-size: 0.875rem;
+        margin-bottom: 1.2rem;
+    }
+</style>
+
+<div class="page-header">
+    <div class="page-title-block">
+        <div class="accent-line"></div>
+        <h2><i class="bi bi-clipboard-check"></i> Service Requests</h2>
+    </div>
 </div>
 
-<div class="card shadow-sm">
-    <div class="card-body p-0">
-        @if (!Model.Any())
-        {
-            <div class="text-center text-muted py-5">
-                <i class="bi bi-clipboard fs-1 d-block mb-3"></i>
-                <p>No service requests found.</p>
-                <a asp-controller="Contracts" asp-action="Index" class="btn btn-primary">
-                    Go to Contracts to create one
-                </a>
-            </div>
-        }
-        else
-        {
-            <table class="table table-hover mb-0">
-                <thead class="table-dark">
+<div class="sr-card">
+    @if (!Model.Any())
+    {
+        <div class="empty-state">
+            <div class="empty-state-icon"><i class="bi bi-clipboard"></i></div>
+            <h5>No service requests found</h5>
+            <p>Service requests are created from within a contract.</p>
+            <a asp-controller="Contracts" asp-action="Index" class="btn btn-primary">
+                Go to Contracts
+            </a>
+        </div>
+    }
+    else
+    {
+        <table class="sr-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Contract</th>
+                    <th>Client</th>
+                    <th>Description</th>
+                    <th>Cost (USD)</th>
+                    <th>Cost (ZAR)</th>
+                    <th>Status</th>
+                    <th>Created</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var sr in Model)
+                {
                     <tr>
-                        <th>#</th>
-                        <th>Contract</th>
-                        <th>Client</th>
-                        <th>Description</th>
-                        <th>Cost (USD)</th>
-                        <th>Cost (ZAR)</th>
-                        <th>Status</th>
-                        <th>Created</th>
-                        <th></th>
+                        <td><span class="sr-id">#@sr.Id</span></td>
+                        <td>
+                            <a asp-controller="Contracts" asp-action="Details"
+                               asp-route-id="@sr.ContractId" class="contract-link">
+                                #@sr.ContractId
+                            </a>
+                        </td>
+                        <td><span class="client-name">@sr.Contract?.Client?.Name</span></td>
+                        <td><span class="desc-cell">@sr.Description</span></td>
+                        <td><span class="cost-usd">$@sr.CostUsd.ToString("N2")</span></td>
+                        <td><span class="cost-zar">R @sr.CostZar.ToString("N2")</span></td>
+                        <td>
+                            <span class="status-badge @(sr.Status == ServiceRequestStatus.Completed ? "sr-status-completed" : sr.Status == ServiceRequestStatus.Cancelled ? "sr-status-cancelled" : sr.Status == ServiceRequestStatus.InProgress ? "sr-status-inprogress" : "sr-status-default")">
+                                @sr.Status
+                            </span>
+                        </td>
+                        <td><span class="date-cell">@sr.CreatedAt.ToShortDateString()</span></td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@sr.Id" class="btn-view">
+                                <i class="bi bi-eye"></i> View
+                            </a>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach (var sr in Model)
-                    {
-                        <tr>
-                            <td>#@sr.Id</td>
-                            <td>
-                                <a asp-controller="Contracts" asp-action="Details"
-                                   asp-route-id="@sr.ContractId">
-                                    #@sr.ContractId
-                                </a>
-                            </td>
-                            <td>@sr.Contract?.Client?.Name</td>
-                            <td class="text-truncate" style="max-width:200px;">@sr.Description</td>
-                            <td>$@sr.CostUsd.ToString("N2")</td>
-                            <td class="text-success fw-bold">R @sr.CostZar.ToString("N2")</td>
-                            <td>
-                                <span class="badge bg-@(sr.Status == ServiceRequestStatus.Completed ? "success" : sr.Status == ServiceRequestStatus.Cancelled ? "danger" : sr.Status == ServiceRequestStatus.InProgress ? "primary" : "secondary")">
-                                    @sr.Status
-                                </span>
-                            </td>
-                            <td class="small text-muted">@sr.CreatedAt.ToShortDateString()</td>
-                            <td>
-                                <a asp-action="Details" asp-route-id="@sr.Id"
-                                   class="btn btn-sm btn-outline-primary">View</a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        }
-    </div>
+                }
+            </tbody>
+        </table>
+    }
 </div>

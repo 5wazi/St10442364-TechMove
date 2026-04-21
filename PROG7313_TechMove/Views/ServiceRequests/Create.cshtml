@@ -5,24 +5,321 @@
     ViewData["Title"] = "New Service Request";
 }
 
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h2><i class="bi bi-clipboard-plus me-2"></i>New Service Request</h2>
+<style>
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 1.75rem;
+    }
+
+    .page-title-block .accent-line {
+        display: inline-block;
+        width: 32px;
+        height: 2px;
+        background: var(--accent);
+        border-radius: 2px;
+        margin-bottom: 0.5rem;
+    }
+
+    .page-title-block h2 {
+        font-family: 'DM Serif Display', serif;
+        font-weight: 400;
+        font-size: 1.7rem;
+        color: var(--text-main);
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+        .page-title-block h2 i {
+            color: var(--accent);
+            font-size: 1.3rem;
+        }
+
+    /* Contract context banner */
+    .contract-banner {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-left: 3px solid var(--accent);
+        border-radius: 8px;
+        padding: 0.85rem 1.2rem;
+        margin-bottom: 1.75rem;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+        .contract-banner i {
+            color: var(--accent);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+    .contract-banner-text {
+        font-size: 0.875rem;
+        color: #374151;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+        .contract-banner-text strong {
+            color: var(--text-main);
+        }
+
+    .banner-sep {
+        color: #cbd5e1;
+    }
+
+    .badge-gold {
+        background: rgba(201,168,76,0.12);
+        color: #92701a;
+        border: 1px solid rgba(201,168,76,0.3);
+        border-radius: 20px;
+        padding: 2px 9px;
+        font-size: 0.72rem;
+        font-weight: 500;
+    }
+
+    .badge-silver {
+        background: #f1f5f9;
+        color: #475569;
+        border: 1px solid #cbd5e1;
+        border-radius: 20px;
+        padding: 2px 9px;
+        font-size: 0.72rem;
+        font-weight: 500;
+    }
+
+    .badge-dark {
+        background: #1e293b;
+        color: #94a3b8;
+        border: 1px solid #334155;
+        border-radius: 20px;
+        padding: 2px 9px;
+        font-size: 0.72rem;
+        font-weight: 500;
+    }
+
+    .badge-active {
+        background: #f0fdf4;
+        color: #166534;
+        border: 1px solid #bbf7d0;
+        border-radius: 20px;
+        padding: 2px 9px;
+        font-size: 0.72rem;
+        font-weight: 500;
+    }
+
+    .badge-danger {
+        background: #fef2f2;
+        color: #b91c1c;
+        border: 1px solid #fca5a5;
+        border-radius: 20px;
+        padding: 2px 9px;
+        font-size: 0.72rem;
+        font-weight: 500;
+    }
+
+    /* Blocked alert */
+    .alert-blocked {
+        background: #fef2f2;
+        border: 1px solid #fca5a5;
+        border-left: 3px solid #ef4444;
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        font-size: 0.875rem;
+        color: #7f1d1d;
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+        .alert-blocked i {
+            font-size: 1rem;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+    /* Form card */
+    .form-card {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .form-card-header {
+        background: #0f172a;
+        padding: 0.9rem 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: 'IBM Plex Sans', sans-serif;
+        font-weight: 500;
+        font-size: 0.68rem;
+        color: #475569;
+        text-transform: uppercase;
+        letter-spacing: 1.4px;
+    }
+
+        .form-card-header i {
+            color: var(--accent);
+            font-size: 0.95rem;
+        }
+
+    .form-card-body {
+        padding: 1.8rem 1.5rem;
+    }
+
+    .form-label {
+        font-weight: 500;
+        font-size: 0.82rem;
+        color: #374151;
+        margin-bottom: 0.4rem;
+        display: block;
+        letter-spacing: 0.1px;
+    }
+
+    .form-label-accent {
+        font-weight: 500;
+        font-size: 0.82rem;
+        color: var(--accent);
+        margin-bottom: 0.4rem;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .form-control, .form-select {
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        padding: 0.55rem 0.85rem;
+        font-size: 0.875rem;
+        background: #f8fafc;
+        color: var(--text-main);
+        transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.15);
+            background: #fff;
+            outline: none;
+        }
+
+        .form-control[readonly] {
+            background: #f1f5f9;
+            color: #166534;
+            font-weight: 600;
+            cursor: default;
+        }
+
+    .input-group-text {
+        background: #f1f5f9;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px 0 0 6px;
+        color: #64748b;
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+
+    .input-group-text-accent {
+        background: rgba(201,168,76,0.1);
+        border: 1px solid rgba(201,168,76,0.3);
+        border-radius: 6px 0 0 6px;
+        color: var(--accent);
+        font-size: 0.875rem;
+        font-weight: 600;
+        padding: 0.55rem 0.85rem;
+    }
+
+    .input-group .form-control {
+        border-left: none;
+        border-radius: 0 6px 6px 0;
+    }
+
+    .rate-note {
+        font-size: 0.78rem;
+        color: #64748b;
+        margin-top: 0.4rem;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+        .rate-note strong {
+            color: var(--text-main);
+        }
+
+    .form-actions {
+        display: flex;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #f1f5f9;
+    }
+
+    .btn-cancel {
+        background: transparent;
+        border: 1px solid #e2e8f0;
+        color: #64748b;
+        border-radius: 6px;
+        padding: 0.5rem 1.4rem;
+        font-size: 0.875rem;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        transition: background 0.15s, border-color 0.15s;
+    }
+
+        .btn-cancel:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+            color: #374151;
+        }
+
+    .alert-danger {
+        background: #fef2f2;
+        border-color: #fca5a5;
+        color: #7f1d1d;
+        border-radius: 8px;
+        font-size: 0.85rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .text-danger {
+        font-size: 0.78rem;
+    }
+</style>
+
+<div class="page-header">
+    <div class="page-title-block">
+        <div class="accent-line"></div>
+        <h2><i class="bi bi-clipboard-plus"></i> New Service Request</h2>
+    </div>
     <a asp-controller="Contracts" asp-action="Details" asp-route-id="@contract?.Id"
        class="btn btn-secondary">
         <i class="bi bi-arrow-left me-1"></i> Back to Contract
     </a>
 </div>
 
-<!-- Contract Info Banner -->
-<div class="alert alert-info d-flex align-items-center gap-3 mb-4">
-    <i class="bi bi-file-earmark-text fs-4"></i>
-    <div>
-        <strong>Contract #@contract?.Id</strong> —
-        @contract?.Client?.Name |
-        <span class="badge bg-@(contract?.ServiceLevel == "Gold" ? "warning text-dark" : contract?.ServiceLevel == "Silver" ? "secondary" : "dark")">
+<!-- Contract context banner -->
+<div class="contract-banner">
+    <i class="bi bi-file-earmark-text"></i>
+    <div class="contract-banner-text">
+        <strong>Contract #@contract?.Id</strong>
+        <span class="banner-sep">—</span>
+        @contract?.Client?.Name
+        <span class="@(contract?.ServiceLevel == "Gold" ? "badge-gold" : contract?.ServiceLevel == "Silver" ? "badge-silver" : "badge-dark")">
             @contract?.ServiceLevel
         </span>
-        <span class="ms-2 badge bg-@(contract?.Status == ContractStatus.Active ? "success" : "danger")">
+        <span class="@(contract?.Status == ContractStatus.Active ? "badge-active" : "badge-danger")">
             @contract?.Status
         </span>
     </div>
@@ -30,69 +327,69 @@
 
 @if (contract?.Status == ContractStatus.Expired || contract?.Status == ContractStatus.OnHold)
 {
-    <div class="alert alert-danger">
-        <i class="bi bi-lock-fill me-2"></i>
-        <strong>Blocked:</strong> Service requests cannot be created for contracts with status
-        <strong>@contract.Status</strong>. Please activate the contract first.
+    <div class="alert-blocked">
+        <i class="bi bi-lock-fill"></i>
+        <div>
+            <strong>Blocked:</strong> Service requests cannot be created for contracts with status
+            <strong>@contract.Status</strong>. Please activate the contract first.
+        </div>
     </div>
 }
 else
 {
     <div class="row justify-content-center">
         <div class="col-md-7">
-            <div class="card shadow-sm">
-                <div class="card-header bg-success text-white">
-                    <i class="bi bi-clipboard-plus me-2"></i>Request Details
+            <div class="form-card">
+                <div class="form-card-header">
+                    <i class="bi bi-clipboard-plus"></i> Request Details
                 </div>
-                <div class="card-body">
+                <div class="form-card-body">
                     <form asp-action="Create">
                         <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
                         <input type="hidden" asp-for="ContractId" />
 
                         <div class="mb-3">
-                            <label asp-for="Description" class="form-label fw-bold"></label>
+                            <label asp-for="Description" class="form-label"></label>
                             <textarea asp-for="Description" class="form-control" rows="4"
                                       placeholder="Describe the logistics service required..."></textarea>
                             <span asp-validation-for="Description" class="text-danger small"></span>
                         </div>
 
-                        <!-- Currency conversion section -->
+                        <!-- Cost USD -->
                         <div class="mb-3">
-                            <label asp-for="CostUsd" class="form-label fw-bold">Cost (USD)</label>
+                            <label asp-for="CostUsd" class="form-label">Cost (USD)</label>
                             <div class="input-group">
                                 <span class="input-group-text">$</span>
                                 <input asp-for="CostUsd" class="form-control" type="number"
-                                       step="0.01" min="0.01" id="costUsd"
-                                       placeholder="0.00" />
+                                       step="0.01" min="0.01" id="costUsd" placeholder="0.00" />
                             </div>
                             <span asp-validation-for="CostUsd" class="text-danger small"></span>
                         </div>
 
                         <!-- Live ZAR conversion -->
                         <div class="mb-4">
-                            <label class="form-label fw-bold text-success">
-                                <i class="bi bi-currency-exchange me-1"></i>
-                                Converted Cost (ZAR) — Live Rate
+                            <label class="form-label-accent">
+                                <i class="bi bi-currency-exchange"></i> Converted Cost (ZAR) — Live Rate
                             </label>
                             <div class="input-group">
-                                <span class="input-group-text bg-success text-white">R</span>
-                                <input id="costZar" class="form-control bg-light fw-bold"
-                                       readonly placeholder="Enter USD amount above..." />
+                                <span class="input-group-text-accent">R</span>
+                                <input id="costZar" class="form-control" readonly
+                                       placeholder="Enter USD amount above..." />
                             </div>
-                            <div class="form-text">
-                                <i class="bi bi-info-circle me-1"></i>
-                                Live exchange rate: <strong>1 USD = R @ViewBag.CurrentRate ZAR</strong>
-                                <span class="text-muted">(auto-calculated on save)</span>
+                            <div class="rate-note">
+                                <i class="bi bi-info-circle"></i>
+                                Live rate: <strong>1 USD = R @ViewBag.CurrentRate ZAR</strong>
+                                <span style="color:#cbd5e1;">·</span>
+                                <span>auto-calculated on save</span>
                             </div>
                         </div>
 
-                        <div class="d-flex gap-2">
-                            <button type="submit" class="btn btn-success px-4">
-                                <i class="bi bi-send me-1"></i>Submit Request
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary px-4">
+                                <i class="bi bi-send me-1"></i> Submit Request
                             </button>
                             <a asp-controller="Contracts" asp-action="Details"
-                               asp-route-id="@contract?.Id"
-                               class="btn btn-outline-secondary px-4">Cancel</a>
+                               asp-route-id="@contract?.Id" class="btn-cancel">Cancel</a>
                         </div>
                     </form>
                 </div>

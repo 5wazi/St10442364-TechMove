@@ -1,26 +1,127 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "TechMove Dashboard";
 }
 
-<div class="text-center mb-5">
-    <h1>Global Logistics Management System</h1>
-    <p class="text-muted">TechMove Logistics — Enterprise Platform</p>
+<style>
+    .dash-header {
+        margin-bottom: 2.5rem;
+    }
+
+        .dash-header .accent-line {
+            display: inline-block;
+            width: 32px;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 2px;
+            margin-bottom: 0.75rem;
+        }
+
+        .dash-header h1 {
+            font-family: 'DM Serif Display', serif;
+            font-weight: 400;
+            font-size: 1.9rem;
+            color: var(--text-main);
+            margin-bottom: 0.25rem;
+            letter-spacing: -0.3px;
+        }
+
+        .dash-header p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin: 0;
+            font-weight: 300;
+            letter-spacing: 0.2px;
+        }
+
+    .dash-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 1.75rem 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.65rem;
+        transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+        height: 100%;
+    }
+
+        .dash-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.07);
+            border-color: #cbd5e1;
+        }
+
+    .dash-card-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.15rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .icon-gold {
+        background: rgba(201, 168, 76, 0.12);
+        color: var(--accent);
+    }
+
+    .icon-slate {
+        background: #f1f5f9;
+        color: #475569;
+    }
+
+    .dash-card h4 {
+        font-family: 'IBM Plex Sans', sans-serif;
+        font-weight: 600;
+        font-size: 1rem;
+        color: var(--text-main);
+        margin: 0;
+        letter-spacing: 0.1px;
+    }
+
+    .dash-card p {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        margin: 0;
+        line-height: 1.55;
+        font-weight: 300;
+    }
+
+    .dash-card .btn-primary {
+        align-self: flex-start;
+        margin-top: auto;
+        font-size: 0.82rem;
+    }
+</style>
+
+<div class="dash-header">
+    <div class="accent-line"></div>
+    <h1>Welcome to TechMove's Global Logistics Management System</h1>
+    <p>TechMove Logistics — Moving Global Logistics Forward</p>
 </div>
 
-<div class="row g-4 justify-content-center">
+<div class="row g-4">
     <div class="col-md-4">
-        <div class="card text-center p-4 shadow-sm">
+        <div class="dash-card">
+            <div class="dash-card-icon icon-gold">
+                <i class="bi bi-file-earmark-text"></i>
+            </div>
             <h4>Contracts</h4>
-            <p class="text-muted">Manage client contracts, SLAs, and signed agreements.</p>
+            <p>Manage client contracts, SLAs, and signed agreements.</p>
             <a asp-controller="Contracts" asp-action="Index" class="btn btn-primary">
                 View Contracts
             </a>
         </div>
     </div>
     <div class="col-md-4">
-        <div class="card text-center p-4 shadow-sm">
+        <div class="dash-card">
+            <div class="dash-card-icon icon-slate">
+                <i class="bi bi-people"></i>
+            </div>
             <h4>Clients</h4>
-            <p class="text-muted">View and manage logistics clients by region.</p>
+            <p>View and manage logistics clients by region.</p>
             <a asp-controller="Clients" asp-action="Index" class="btn btn-primary">
                 View Clients
             </a>
