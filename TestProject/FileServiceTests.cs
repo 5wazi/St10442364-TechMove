@@ -9,7 +9,7 @@ namespace TestProject
 {
     public class FileServiceTests : IDisposable
     {
-        // ── per-test temp folder so real file I/O works without ASP.NET host ──
+        // per-test temp folder so real file I/O works without ASP.NET host 
 
         private readonly string _tempRoot;
         private readonly FileService _svc;
@@ -27,7 +27,7 @@ namespace TestProject
 
         public void Dispose() => Directory.Delete(_tempRoot, recursive: true);
 
-        // ── helpers ───────────────────────────────────────────────────────────
+        //  helpers
 
         private static IFormFile MakeFile(string fileName, string content = "dummy")
         {
@@ -52,7 +52,7 @@ namespace TestProject
             return file.Object;
         }
 
-        // ── null / empty guards ───────────────────────────────────────────────
+        // null / empty guards
 
         [Fact]
         public async Task Save_Throws_WhenFileIsNull()
@@ -70,7 +70,7 @@ namespace TestProject
             Assert.Contains("No file was uploaded", ex.Message);
         }
 
-        // ── extension validation ──────────────────────────────────────────────
+        // extension validation 
 
         [Theory]
         [InlineData("malware.exe")]
@@ -105,7 +105,7 @@ namespace TestProject
             Assert.Equal("contract.PDF", name);
         }
 
-        // ── size validation ───────────────────────────────────────────────────
+        // size validation 
 
         [Fact]
         public async Task Save_Throws_WhenFileSizeExceedsTenMb()
@@ -132,7 +132,7 @@ namespace TestProject
             Assert.NotEmpty(path);
         }
 
-        // ── happy path ────────────────────────────────────────────────────────
+        // happy path 
 
         [Fact]
         public async Task Save_ReturnsPath_StartingWithUploadsAgreements()
@@ -166,7 +166,7 @@ namespace TestProject
             Assert.True(Directory.Exists(dir));
         }
 
-        // ── GetPhysicalPath ───────────────────────────────────────────────────
+        // GetPhysicalPath 
 
         [Fact]
         public void GetPhysicalPath_StripsLeadingSlash_AndCombinesWithWebRoot()

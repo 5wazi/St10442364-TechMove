@@ -11,8 +11,7 @@ namespace TestProject
 {
     public class CurrencyServiceTests
     {
-        // ── helpers ───────────────────────────────────────────────────────────
-
+        // helpers 
         private static CurrencyService Build(HttpMessageHandler handler)
             => new CurrencyService(
                 new HttpClient(handler),
@@ -64,7 +63,7 @@ namespace TestProject
             return mock.Object;
         }
 
-        // ── GetUsdToZarRateAsync ──────────────────────────────────────────────
+        // GetUsdToZarRateAsync 
 
         [Fact]
         public async Task GetRate_ReturnsRateFromApi_WhenApiReturnsZar()
@@ -124,7 +123,7 @@ namespace TestProject
             Assert.Equal(18.50m, await Build(mock.Object).GetUsdToZarRateAsync());
         }
 
-        // ── ConvertUsdToZarAsync ──────────────────────────────────────────────
+        // ConvertUsdToZarAsync 
 
         [Fact]
         public async Task ConvertUsdToZar_ShouldCalculateCorrectly()
