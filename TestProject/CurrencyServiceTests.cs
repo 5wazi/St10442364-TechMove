@@ -7,7 +7,7 @@ using PROG7313_TechMove.Services;
 using Microsoft.Extensions.Logging;
 using System.Threading;
 
-namespace TechMove.Tests
+namespace TestProject
 {
     public class CurrencyServiceTests
     {
