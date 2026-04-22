@@ -46,6 +46,7 @@ namespace PROG7313_TechMove.Services
             // Handle file upload if provided
             if (signedAgreement != null && signedAgreement.Length > 0)
             {
+
                 var (path, name) = await _fileService.SaveSignedAgreementAsync(signedAgreement);
                 contract.SignedAgreementPath = path;
                 contract.SignedAgreementFileName = name;

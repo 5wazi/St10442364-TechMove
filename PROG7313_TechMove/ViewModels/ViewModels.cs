@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using PROG7313_TechMove.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace PROG7313_TechMove.ViewModels
 {
@@ -12,6 +13,9 @@ namespace PROG7313_TechMove.ViewModels
         [DataType(DataType.Date)]
         [Display(Name = "Start Date")]
         public DateTime StartDate { get; set; } = DateTime.Today;
+
+        [Required]
+        public ContractStatus Status { get; set; } = ContractStatus.Draft;
 
         [Required]
         [DataType(DataType.Date)]

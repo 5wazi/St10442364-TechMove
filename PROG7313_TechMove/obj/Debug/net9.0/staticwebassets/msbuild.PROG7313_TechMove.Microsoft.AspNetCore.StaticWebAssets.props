@@ -1152,6 +1152,24 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\PROG7313_TechMove.t04fumaztc.bundle.scp.css'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\agreements\04297415-4778-442f-8d55-a5f603fbbe05.pdf'))">
+      <SourceType>Package</SourceType>
+      <SourceId>PROG7313_TechMove</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/PROG7313_TechMove</BasePath>
+      <RelativePath>uploads/agreements/04297415-4778-442f-8d55-a5f603fbbe05.pdf</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>vof9qmsbxn</Fingerprint>
+      <Integrity>UVaFnA2TdfnUjzYig1/DTzowqG54R7eWSbTz9+Rv0HA=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\agreements\04297415-4778-442f-8d55-a5f603fbbe05.pdf'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\agreements\fcc9cb82-e75b-4b98-be89-9834c50fd156.pdf'))">
       <SourceType>Package</SourceType>
       <SourceId>PROG7313_TechMove</SourceId>
