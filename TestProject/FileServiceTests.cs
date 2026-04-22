@@ -5,7 +5,7 @@ using Moq;
 using System.Text;
 using PROG7313_TechMove.Services;
 
-namespace TechMove.Tests
+namespace TestProject
 {
     public class FileServiceTests : IDisposable
     {

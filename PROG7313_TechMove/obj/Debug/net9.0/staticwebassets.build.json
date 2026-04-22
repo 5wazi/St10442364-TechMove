@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "APBIni50AXOv9DRu1pde52bGqbtYWiJSLGIT6N0GTGA=",
+  "Hash": "TWinCcWPMJvisoW3CVEBKo9HV8FDJe1BVZxSPkKVqzg=",
   "Source": "PROG7313_TechMove",
   "BasePath": "_content/PROG7313_TechMove",
   "Mode": "Default",
@@ -2745,6 +2745,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\agreements\\04297415-4778-442f-8d55-a5f603fbbe05.pdf"
+    },
+    {
+      "Identity": "C:\\Users\\samke\\source\\repos\\St10442364-TechMove-Draft\\PROG7313_TechMove\\wwwroot\\uploads\\agreements\\cb0496f0-d442-469c-ba07-1625bc5fc02e.pdf",
+      "SourceId": "PROG7313_TechMove",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\samke\\source\\repos\\St10442364-TechMove-Draft\\PROG7313_TechMove\\wwwroot\\",
+      "BasePath": "_content/PROG7313_TechMove",
+      "RelativePath": "uploads/agreements/cb0496f0-d442-469c-ba07-1625bc5fc02e#[.{fingerprint}]?.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "vof9qmsbxn",
+      "Integrity": "UVaFnA2TdfnUjzYig1/DTzowqG54R7eWSbTz9+Rv0HA=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\agreements\\cb0496f0-d442-469c-ba07-1625bc5fc02e.pdf"
     },
     {
       "Identity": "C:\\Users\\samke\\source\\repos\\St10442364-TechMove-Draft\\PROG7313_TechMove\\wwwroot\\uploads\\agreements\\fcc9cb82-e75b-4b98-be89-9834c50fd156.pdf",
@@ -21998,6 +22019,88 @@
         {
           "Name": "label",
           "Value": "uploads/agreements/04297415-4778-442f-8d55-a5f603fbbe05.pdf"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-UVaFnA2TdfnUjzYig1/DTzowqG54R7eWSbTz9+Rv0HA="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/agreements/cb0496f0-d442-469c-ba07-1625bc5fc02e.pdf",
+      "AssetFile": "C:\\Users\\samke\\source\\repos\\St10442364-TechMove-Draft\\PROG7313_TechMove\\wwwroot\\uploads\\agreements\\cb0496f0-d442-469c-ba07-1625bc5fc02e.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "15212"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UVaFnA2TdfnUjzYig1/DTzowqG54R7eWSbTz9+Rv0HA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 22 Apr 2026 12:23:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-UVaFnA2TdfnUjzYig1/DTzowqG54R7eWSbTz9+Rv0HA="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/agreements/cb0496f0-d442-469c-ba07-1625bc5fc02e.vof9qmsbxn.pdf",
+      "AssetFile": "C:\\Users\\samke\\source\\repos\\St10442364-TechMove-Draft\\PROG7313_TechMove\\wwwroot\\uploads\\agreements\\cb0496f0-d442-469c-ba07-1625bc5fc02e.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "15212"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UVaFnA2TdfnUjzYig1/DTzowqG54R7eWSbTz9+Rv0HA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 22 Apr 2026 12:23:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "vof9qmsbxn"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/agreements/cb0496f0-d442-469c-ba07-1625bc5fc02e.pdf"
         },
         {
           "Name": "integrity",
