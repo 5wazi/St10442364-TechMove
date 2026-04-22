@@ -61,6 +61,20 @@ namespace PROG7313_TechMove.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ContractCreateViewModel vm)
         {
+            // File validation
+            if (vm.SignedAgreement != null)
+            {
+                if (!vm.SignedAgreement.FileName.EndsWith(".pdf"))
+                {
+                    ModelState.AddModelError("SignedAgreement", "Only PDF files are allowed.");
+                }
+
+                if (vm.SignedAgreement.Length > 5 * 1024 * 1024) // 5MB
+                {
+                    ModelState.AddModelError("SignedAgreement", "File size must be under 5MB.");
+                }
+            }
+
             if (!ModelState.IsValid)
             {
                 await PopulateClientsDropdownAsync();

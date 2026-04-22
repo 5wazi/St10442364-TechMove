@@ -412,7 +412,13 @@
 <div class="page-header">
     <div class="page-title-block">
         <div class="accent-line"></div>
-        <h2><i class="bi bi-file-earmark-text"></i> Contract #@Model.Id</h2>
+        <h2>
+            <i class="bi bi-file-earmark-text"></i>
+            @Model.Client?.Name
+            <span style="font-size: 0.8rem; color: #94a3b8; margin-left: 8px;">
+                — Contract #@Model.Id
+            </span>
+        </h2>
     </div>
     <a asp-action="Index" class="btn btn-secondary">
         <i class="bi bi-arrow-left me-1"></i> Back to Contracts

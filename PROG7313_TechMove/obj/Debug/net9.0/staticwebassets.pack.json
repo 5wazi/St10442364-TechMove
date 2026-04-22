@@ -257,6 +257,10 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.slim.min.map"
     },
     {
+      "Id": "C:\\Users\\samke\\source\\repos\\PROG7313_TechMove\\PROG7313_TechMove\\wwwroot\\uploads\\agreements\\fcc9cb82-e75b-4b98-be89-9834c50fd156.pdf",
+      "PackagePath": "staticwebassets\\uploads\\agreements\\fcc9cb82-e75b-4b98-be89-9834c50fd156.pdf"
+    },
+    {
       "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.PROG7313_TechMove.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },

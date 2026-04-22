@@ -23,6 +23,7 @@ namespace PROG7313_TechMove.ViewModels
         public string ServiceLevel { get; set; } = "Bronze";
 
         [Display(Name = "Signed Agreement (PDF)")]
+        [DataType(DataType.Upload)]
         public IFormFile? SignedAgreement { get; set; }
     }
 

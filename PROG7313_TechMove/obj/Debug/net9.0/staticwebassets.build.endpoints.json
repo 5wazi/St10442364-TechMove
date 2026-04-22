@@ -18857,6 +18857,88 @@
           "Value": "lib/jquery/dist/jquery.slim.min.js.gz"
         }
       ]
+    },
+    {
+      "Route": "uploads/agreements/fcc9cb82-e75b-4b98-be89-9834c50fd156.pdf",
+      "AssetFile": "uploads/agreements/fcc9cb82-e75b-4b98-be89-9834c50fd156.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "15212"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UVaFnA2TdfnUjzYig1/DTzowqG54R7eWSbTz9+Rv0HA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 22 Apr 2026 01:22:36 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-UVaFnA2TdfnUjzYig1/DTzowqG54R7eWSbTz9+Rv0HA="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/agreements/fcc9cb82-e75b-4b98-be89-9834c50fd156.vof9qmsbxn.pdf",
+      "AssetFile": "uploads/agreements/fcc9cb82-e75b-4b98-be89-9834c50fd156.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "15212"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UVaFnA2TdfnUjzYig1/DTzowqG54R7eWSbTz9+Rv0HA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 22 Apr 2026 01:22:36 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "vof9qmsbxn"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-UVaFnA2TdfnUjzYig1/DTzowqG54R7eWSbTz9+Rv0HA="
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/agreements/fcc9cb82-e75b-4b98-be89-9834c50fd156.pdf"
+        }
+      ]
     }
   ]
 }

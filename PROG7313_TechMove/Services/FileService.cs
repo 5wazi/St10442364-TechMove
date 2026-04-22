@@ -4,14 +4,10 @@
     {
         Task<(string filePath, string fileName)> SaveSignedAgreementAsync(IFormFile file);
 
-        /// <summary>Returns the physical path of a stored file for download.</summary>
+        //Returns the physical path of a stored file for download.</summary>
         string GetPhysicalPath(string storedPath);
     }
 
-    /// <summary>
-    /// Handles PDF upload, validation, and unique naming.
-    /// Rubric criterion 4: File saves to server folder, strict PDF-only validation, UUID naming, download supported.
-    /// </summary>
     public class FileService : IFileService
     {
         private readonly IWebHostEnvironment _env;

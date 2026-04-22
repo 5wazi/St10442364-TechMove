@@ -768,5 +768,17 @@
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"t04fumaztc"},{"Name":"integrity","Value":"sha256-4\u002BdzZgbyBVC8zK\u002B9\u002BYRuGLIWqhX91GUZSL9IFei8qH8="},{"Name":"label","Value":"_content/PROG7313_TechMove/PROG7313_TechMove.bundle.scp.css"}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1135"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u00224\u002BdzZgbyBVC8zK\u002B9\u002BYRuGLIWqhX91GUZSL9IFei8qH8=\u0022"},{"Name":"Last-Modified","Value":"Tue, 21 Apr 2026 18:17:16 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/PROG7313_TechMove/uploads/agreements/fcc9cb82-e75b-4b98-be89-9834c50fd156.pdf">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\agreements\fcc9cb82-e75b-4b98-be89-9834c50fd156.pdf'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-UVaFnA2TdfnUjzYig1/DTzowqG54R7eWSbTz9\u002BRv0HA="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"15212"},{"Name":"Content-Type","Value":"application/pdf"},{"Name":"ETag","Value":"\u0022UVaFnA2TdfnUjzYig1/DTzowqG54R7eWSbTz9\u002BRv0HA=\u0022"},{"Name":"Last-Modified","Value":"Wed, 22 Apr 2026 01:22:36 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/PROG7313_TechMove/uploads/agreements/fcc9cb82-e75b-4b98-be89-9834c50fd156.vof9qmsbxn.pdf">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\agreements\fcc9cb82-e75b-4b98-be89-9834c50fd156.pdf'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"vof9qmsbxn"},{"Name":"integrity","Value":"sha256-UVaFnA2TdfnUjzYig1/DTzowqG54R7eWSbTz9\u002BRv0HA="},{"Name":"label","Value":"_content/PROG7313_TechMove/uploads/agreements/fcc9cb82-e75b-4b98-be89-9834c50fd156.pdf"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"15212"},{"Name":"Content-Type","Value":"application/pdf"},{"Name":"ETag","Value":"\u0022UVaFnA2TdfnUjzYig1/DTzowqG54R7eWSbTz9\u002BRv0HA=\u0022"},{"Name":"Last-Modified","Value":"Wed, 22 Apr 2026 01:22:36 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
   </ItemGroup>
 </Project>

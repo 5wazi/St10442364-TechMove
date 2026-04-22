@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "NatFEMduVKkU81cuGSB3qt3MFvLT+8pzJehXUv6S3do=",
+  "Hash": "W1VEnoLlpubAI1IuuAazX8TpEgytfHM3G4vo4Mfsbqs=",
   "Source": "PROG7313_TechMove",
   "BasePath": "_content/PROG7313_TechMove",
   "Mode": "Default",
@@ -2724,6 +2724,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\samke\\source\\repos\\PROG7313_TechMove\\PROG7313_TechMove\\wwwroot\\uploads\\agreements\\fcc9cb82-e75b-4b98-be89-9834c50fd156.pdf",
+      "SourceId": "PROG7313_TechMove",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\samke\\source\\repos\\PROG7313_TechMove\\PROG7313_TechMove\\wwwroot\\",
+      "BasePath": "_content/PROG7313_TechMove",
+      "RelativePath": "uploads/agreements/fcc9cb82-e75b-4b98-be89-9834c50fd156#[.{fingerprint}]?.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "vof9qmsbxn",
+      "Integrity": "UVaFnA2TdfnUjzYig1/DTzowqG54R7eWSbTz9+Rv0HA=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\agreements\\fcc9cb82-e75b-4b98-be89-9834c50fd156.pdf"
     }
   ],
   "Endpoints": [
@@ -21878,6 +21899,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-scngAxxk0Ob5Tk8O7h9D1azRz0GqBugXPDzzTZoWPjY="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/agreements/fcc9cb82-e75b-4b98-be89-9834c50fd156.pdf",
+      "AssetFile": "C:\\Users\\samke\\source\\repos\\PROG7313_TechMove\\PROG7313_TechMove\\wwwroot\\uploads\\agreements\\fcc9cb82-e75b-4b98-be89-9834c50fd156.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "15212"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UVaFnA2TdfnUjzYig1/DTzowqG54R7eWSbTz9+Rv0HA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 22 Apr 2026 01:22:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-UVaFnA2TdfnUjzYig1/DTzowqG54R7eWSbTz9+Rv0HA="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/agreements/fcc9cb82-e75b-4b98-be89-9834c50fd156.vof9qmsbxn.pdf",
+      "AssetFile": "C:\\Users\\samke\\source\\repos\\PROG7313_TechMove\\PROG7313_TechMove\\wwwroot\\uploads\\agreements\\fcc9cb82-e75b-4b98-be89-9834c50fd156.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "15212"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UVaFnA2TdfnUjzYig1/DTzowqG54R7eWSbTz9+Rv0HA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 22 Apr 2026 01:22:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "vof9qmsbxn"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/agreements/fcc9cb82-e75b-4b98-be89-9834c50fd156.pdf"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-UVaFnA2TdfnUjzYig1/DTzowqG54R7eWSbTz9+Rv0HA="
         }
       ]
     }
