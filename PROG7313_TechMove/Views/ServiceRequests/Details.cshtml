@@ -4,8 +4,160 @@
     ViewData["Title"] = $"Service Request #{Model.Id}";
 }
 
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h2><i class="bi bi-clipboard-check me-2"></i>Service Request #@Model.Id</h2>
+<style>
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 2rem;
+    }
+
+    .page-title-block .accent-line {
+        display: inline-block;
+        width: 32px;
+        height: 2px;
+        background: var(--accent);
+        border-radius: 2px;
+        margin-bottom: 0.5rem;
+    }
+
+    .page-title-block h2 {
+        font-family: 'DM Serif Display', serif;
+        font-weight: 400;
+        font-size: 1.7rem;
+        color: var(--text-main);
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+        .page-title-block h2 i {
+            color: var(--accent);
+            font-size: 1.3rem;
+        }
+
+    .info-card {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .info-card-header {
+        background: #0f172a;
+        padding: 0.85rem 1.3rem;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        font-family: 'IBM Plex Sans', sans-serif;
+        font-weight: 500;
+        font-size: 0.68rem;
+        color: #475569;
+        text-transform: uppercase;
+        letter-spacing: 1.4px;
+    }
+
+        .info-card-header i {
+            color: var(--accent);
+        }
+
+    .info-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        .info-table tr {
+            border-bottom: 1px solid #f8fafc;
+        }
+
+            .info-table tr:last-child {
+                border-bottom: none;
+            }
+
+        .info-table th {
+            padding: 0.85rem 1.3rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            width: 35%;
+            vertical-align: top;
+        }
+
+        .info-table td {
+            padding: 0.85rem 1.3rem 0.85rem 0;
+            font-size: 0.875rem;
+            color: var(--text-main);
+            vertical-align: top;
+        }
+
+    .contract-link {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 600;
+        transition: opacity 0.15s;
+    }
+
+        .contract-link:hover {
+            opacity: 0.75;
+        }
+
+    .cost-usd {
+        font-weight: 600;
+        color: var(--text-main);
+    }
+
+    .cost-zar {
+        font-weight: 600;
+        color: #166534;
+    }
+
+    .rate-text {
+        font-size: 0.83rem;
+        color: #94a3b8;
+    }
+
+    .status-badge {
+        display: inline-block;
+        border-radius: 20px;
+        padding: 4px 12px;
+        font-size: 0.78rem;
+        font-weight: 500;
+    }
+
+    .sr-status-completed {
+        background: #f0fdf4;
+        color: #166534;
+        border: 1px solid #bbf7d0;
+    }
+
+    .sr-status-cancelled {
+        background: #fef2f2;
+        color: #b91c1c;
+        border: 1px solid #fca5a5;
+    }
+
+    .sr-status-inprogress {
+        background: rgba(201,168,76,0.1);
+        color: #92701a;
+        border: 1px solid rgba(201,168,76,0.3);
+    }
+
+    .sr-status-default {
+        background: #f1f5f9;
+        color: #64748b;
+        border: 1px solid #e2e8f0;
+    }
+</style>
+
+<div class="page-header">
+    <div class="page-title-block">
+        <div class="accent-line"></div>
+        <h2><i class="bi bi-clipboard-check"></i> Service Request #@Model.Id</h2>
+    </div>
     <a asp-controller="Contracts" asp-action="Details" asp-route-id="@Model.ContractId"
        class="btn btn-secondary">
         <i class="bi bi-arrow-left me-1"></i> Back to Contract
@@ -14,51 +166,49 @@
 
 <div class="row g-4 justify-content-center">
     <div class="col-md-7">
-        <div class="card shadow-sm">
-            <div class="card-header bg-primary text-white">
-                <i class="bi bi-info-circle me-2"></i>Request Details
+        <div class="info-card">
+            <div class="info-card-header">
+                <i class="bi bi-info-circle"></i> Request Details
             </div>
-            <div class="card-body">
-                <table class="table table-borderless">
-                    <tr>
-                        <th width="35%">Contract</th>
-                        <td>
-                            <a asp-controller="Contracts" asp-action="Details"
-                               asp-route-id="@Model.ContractId">
-                                #@Model.ContractId — @Model.Contract?.Client?.Name
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Description</th>
-                        <td>@Model.Description</td>
-                    </tr>
-                    <tr>
-                        <th>Cost (USD)</th>
-                        <td class="fw-bold">$@Model.CostUsd.ToString("N2")</td>
-                    </tr>
-                    <tr>
-                        <th>Cost (ZAR)</th>
-                        <td class="fw-bold text-success">R @Model.CostZar.ToString("N2")</td>
-                    </tr>
-                    <tr>
-                        <th>Exchange Rate Used</th>
-                        <td class="text-muted">1 USD = @Model.ExchangeRateUsed.ToString("F4") ZAR</td>
-                    </tr>
-                    <tr>
-                        <th>Status</th>
-                        <td>
-                            <span class="badge bg-@(Model.Status == ServiceRequestStatus.Completed ? "success" : Model.Status == ServiceRequestStatus.Cancelled ? "danger" : Model.Status == ServiceRequestStatus.InProgress ? "primary" : "secondary") fs-6">
-                                @Model.Status
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Created</th>
-                        <td>@Model.CreatedAt.ToString("dd MMM yyyy HH:mm")</td>
-                    </tr>
-                </table>
-            </div>
+            <table class="info-table">
+                <tr>
+                    <th>Contract</th>
+                    <td>
+                        <a asp-controller="Contracts" asp-action="Details"
+                           asp-route-id="@Model.ContractId" class="contract-link">
+                            #@Model.ContractId — @Model.Contract?.Client?.Name
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>@Model.Description</td>
+                </tr>
+                <tr>
+                    <th>Cost (USD)</th>
+                    <td><span class="cost-usd">$@Model.CostUsd.ToString("N2")</span></td>
+                </tr>
+                <tr>
+                    <th>Cost (ZAR)</th>
+                    <td><span class="cost-zar">R @Model.CostZar.ToString("N2")</span></td>
+                </tr>
+                <tr>
+                    <th>Exchange Rate Used</th>
+                    <td><span class="rate-text">1 USD = @Model.ExchangeRateUsed.ToString("F4") ZAR</span></td>
+                </tr>
+                <tr>
+                    <th>Status</th>
+                    <td>
+                        <span class="status-badge @(Model.Status == ServiceRequestStatus.Completed ? "sr-status-completed" : Model.Status == ServiceRequestStatus.Cancelled ? "sr-status-cancelled" : Model.Status == ServiceRequestStatus.InProgress ? "sr-status-inprogress" : "sr-status-default")">
+                            @Model.Status
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Created</th>
+                    <td>@Model.CreatedAt.ToString("dd MMM yyyy HH:mm")</td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>

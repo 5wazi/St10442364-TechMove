@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "stBezLN8fXg=",
+  "dgSpecHash": "szjvb/qXOfo=",
   "success": true,
-  "projectFilePath": "C:\\Users\\samke\\source\\repos\\PROG7313_TechMove\\TestProject\\TestProject.csproj",
+  "projectFilePath": "C:\\Users\\samke\\Source\\Repos\\St10442364-TechMove\\TestProject\\TestProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\samke\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\samke\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

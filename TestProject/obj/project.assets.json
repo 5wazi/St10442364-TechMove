@@ -9996,11 +9996,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\samke\\source\\repos\\PROG7313_TechMove\\TestProject\\TestProject.csproj",
+      "projectUniqueName": "C:\\Users\\samke\\Source\\Repos\\St10442364-TechMove\\TestProject\\TestProject.csproj",
       "projectName": "TestProject",
-      "projectPath": "C:\\Users\\samke\\source\\repos\\PROG7313_TechMove\\TestProject\\TestProject.csproj",
+      "projectPath": "C:\\Users\\samke\\Source\\Repos\\St10442364-TechMove\\TestProject\\TestProject.csproj",
       "packagesPath": "C:\\Users\\samke\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\samke\\source\\repos\\PROG7313_TechMove\\TestProject\\obj\\",
+      "outputPath": "C:\\Users\\samke\\Source\\Repos\\St10442364-TechMove\\TestProject\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -10021,8 +10021,8 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "C:\\Users\\samke\\source\\repos\\PROG7313_TechMove\\PROG7313_TechMove\\PROG7313_TechMove.csproj": {
-              "projectPath": "C:\\Users\\samke\\source\\repos\\PROG7313_TechMove\\PROG7313_TechMove\\PROG7313_TechMove.csproj"
+            "C:\\Users\\samke\\Source\\Repos\\St10442364-TechMove\\PROG7313_TechMove\\PROG7313_TechMove.csproj": {
+              "projectPath": "C:\\Users\\samke\\Source\\Repos\\St10442364-TechMove\\PROG7313_TechMove\\PROG7313_TechMove.csproj"
             }
           }
         }

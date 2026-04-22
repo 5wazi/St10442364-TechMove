@@ -9857,11 +9857,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\samke\\source\\repos\\PROG7313_TechMove\\PROG7313_TechMove\\PROG7313_TechMove.csproj",
+      "projectUniqueName": "C:\\Users\\samke\\Source\\Repos\\St10442364-TechMove\\PROG7313_TechMove\\PROG7313_TechMove.csproj",
       "projectName": "PROG7313_TechMove",
-      "projectPath": "C:\\Users\\samke\\source\\repos\\PROG7313_TechMove\\PROG7313_TechMove\\PROG7313_TechMove.csproj",
+      "projectPath": "C:\\Users\\samke\\Source\\Repos\\St10442364-TechMove\\PROG7313_TechMove\\PROG7313_TechMove.csproj",
       "packagesPath": "C:\\Users\\samke\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\samke\\source\\repos\\PROG7313_TechMove\\PROG7313_TechMove\\obj\\",
+      "outputPath": "C:\\Users\\samke\\Source\\Repos\\St10442364-TechMove\\PROG7313_TechMove\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

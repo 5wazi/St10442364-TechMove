@@ -37,18 +37,21 @@
             color: var(--accent);
         }
 
+    /* CARD FIX */
     .sr-card {
         background: #fff;
         border: 1px solid var(--border);
         border-radius: 10px;
-        overflow: hidden;
+        overflow-x: auto; /* key fix */
         box-shadow: 0 1px 4px rgba(0,0,0,0.04);
     }
 
+    /* TABLE FIX */
     .sr-table {
         width: 100%;
         border-collapse: collapse;
         margin: 0;
+        min-width: 1000px; /* prevents squashing */
     }
 
         .sr-table thead tr {
@@ -110,13 +113,15 @@
         color: var(--text-main);
     }
 
+    /* FIXED DESCRIPTION */
     .desc-cell {
-        max-width: 200px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        max-width: 320px;
+        white-space: normal; /* allow wrapping */
+        overflow: visible;
+        text-overflow: unset;
         color: #64748b;
         font-size: 0.85rem;
+        word-break: break-word;
     }
 
     .cost-usd {
