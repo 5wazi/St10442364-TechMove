@@ -1,6 +1,4 @@
-﻿@model PROG7313_TechMove.ViewModels.ContractCreateViewModel
-@using PROG7313_TechMove.Models
-
+﻿@model ContractCreateViewModel
 @{
     ViewData["Title"] = "New Contract";
 }
@@ -86,6 +84,7 @@
         background: #f8fafc;
         color: var(--text-main);
         transition: border-color 0.15s, box-shadow 0.15s;
+        width: 100%;
     }
 
         .form-control:focus, .form-select:focus {
@@ -93,12 +92,6 @@
             box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.15);
             background: #fff;
             outline: none;
-        }
-
-        
-        .form-control.is-invalid {
-            border-color: #ef4444;
-            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12);
         }
 
     .form-actions {
@@ -143,10 +136,10 @@
         font-size: 0.78rem;
     }
 
-    .file-hint {
+    .file-note {
         font-size: 0.78rem;
-        color: #94a3b8;
-        margin-top: 0.3rem;
+        color: #64748b;
+        margin-top: 0.35rem;
         display: flex;
         align-items: center;
         gap: 5px;
@@ -176,7 +169,8 @@
                     <!-- CLIENT -->
                     <div class="mb-3">
                         <label asp-for="ClientId" class="form-label">Client</label>
-                        <select asp-for="ClientId" class="form-select" asp-items="ViewBag.Clients">
+                        <select asp-for="ClientId" class="form-select"
+                                asp-items="ViewBag.Clients">
                             <option value="">-- Select Client --</option>
                         </select>
                         <span asp-validation-for="ClientId" class="text-danger small"></span>
@@ -185,23 +179,9 @@
                     <!-- SERVICE LEVEL -->
                     <div class="mb-3">
                         <label asp-for="ServiceLevel" class="form-label"></label>
-                        <select asp-for="ServiceLevel" class="form-select">
-                            <option value="">-- Select Service Level --</option>
-                            <option>Premium Logistics</option>
-                            <option>Enterprise Supply Chain</option>
-                            <option>Bulk Transport</option>
-                            <option>Express Delivery</option>
-                            <option>Standard Freight</option>
-                        </select>
+                        <input asp-for="ServiceLevel" class="form-control"
+                               placeholder="e.g. Gold, Silver, Bronze" />
                         <span asp-validation-for="ServiceLevel" class="text-danger small"></span>
-                    </div>
-
-                    <!-- STATUS -->
-                    <div class="mb-3">
-                        <label asp-for="Status" class="form-label"></label>
-                        <select asp-for="Status" class="form-select"
-                                asp-items="Html.GetEnumSelectList<ContractStatus>()"></select>
-                        <span asp-validation-for="Status" class="text-danger small"></span>
                     </div>
 
                     <!-- START DATE -->
@@ -212,7 +192,7 @@
                     </div>
 
                     <!-- END DATE -->
-                    <div class="mb-3">
+                    <div class="mb-4">
                         <label asp-for="EndDate" class="form-label"></label>
                         <input asp-for="EndDate" type="date" class="form-control" />
                         <span asp-validation-for="EndDate" class="text-danger small"></span>
@@ -220,39 +200,16 @@
 
                     <!-- SIGNED AGREEMENT -->
                     <div class="mb-4">
-                        <label class="form-label">
-                            Upload Signed Agreement
-                            <span style="color:#94a3b8; font-weight:300;">(optional)</span>
+                        <label asp-for="SignedAgreement" class="form-label">
+                            Signed Agreement (PDF, optional)
                         </label>
-
-                        @{
-                            var fileHasError = ViewData.ModelState["SignedAgreement"]?.Errors.Count > 0;
-                        }
-
-                        <input type="file"
-                               name="SignedAgreement"
-                               id="SignedAgreement"
-                               class="form-control @(fileHasError ? "is-invalid" : "")"
-                               accept=".pdf" />
-
-                        @* Field-level error — shown directly below the input *@
-                        <span asp-validation-for="SignedAgreement" class="text-danger small"></span>
-
-                        @* Show the server-side message if client-side span doesn't catch it *@
-                        @if (fileHasError)
-                        {
-                            foreach (var error in ViewData.ModelState["SignedAgreement"]!.Errors)
-                            {
-                                <div class="text-danger small mt-1">
-                                    <i class="bi bi-exclamation-circle me-1"></i>@error.ErrorMessage
-                                </div>
-                            }
-                        }
-
-                        <div class="file-hint">
+                        <input asp-for="SignedAgreement" type="file"
+                               class="form-control" accept=".pdf" />
+                        <div class="file-note">
                             <i class="bi bi-info-circle"></i>
-                            PDF only · maximum 10 MB
+                            Only PDF files accepted. Maximum size 5 MB.
                         </div>
+                        <span asp-validation-for="SignedAgreement" class="text-danger small"></span>
                     </div>
 
                     <div class="form-actions">

@@ -1,4 +1,4 @@
-﻿@model PROG7313_TechMove.Models.Contract
+﻿@model ContractViewModel
 @{
     ViewData["Title"] = $"Contract #{Model.Id}";
 }
@@ -36,7 +36,6 @@
             font-size: 1.3rem;
         }
 
-    /* Info & Action Cards */
     .info-card {
         background: #fff;
         border: 1px solid var(--border);
@@ -60,14 +59,14 @@
         letter-spacing: 1.4px;
     }
 
-        .info-card-header i {
-            color: var(--accent);
-        }
-
         .info-card-header .header-left {
             display: flex;
             align-items: center;
             gap: 8px;
+        }
+
+        .info-card-header i {
+            color: var(--accent);
         }
 
     .info-table {
@@ -101,7 +100,6 @@
             vertical-align: top;
         }
 
-    /* Status & Service Level badges */
     .status-badge {
         display: inline-block;
         border-radius: 20px;
@@ -164,7 +162,6 @@
         font-weight: 500;
     }
 
-    /* Action card sections */
     .action-section {
         padding: 1.2rem 1.3rem;
         border-bottom: 1px solid #f1f5f9;
@@ -280,7 +277,6 @@
         gap: 6px;
     }
 
-    /* Service Requests Table */
     .sr-card {
         background: #fff;
         border: 1px solid var(--border);
@@ -414,7 +410,7 @@
         <div class="accent-line"></div>
         <h2>
             <i class="bi bi-file-earmark-text"></i>
-            @Model.Client?.Name
+            @Model.ClientName
             <span style="font-size: 0.8rem; color: #94a3b8; margin-left: 8px;">
                 — Contract #@Model.Id
             </span>
@@ -431,16 +427,14 @@
     <div class="col-md-6">
         <div class="info-card">
             <div class="info-card-header">
-                <div class="header-left"><i class="bi bi-info-circle"></i> Contract Details</div>
+                <div class="header-left">
+                    <i class="bi bi-info-circle"></i> Contract Details
+                </div>
             </div>
             <table class="info-table">
                 <tr>
                     <th>Client</th>
-                    <td>@Model.Client?.Name</td>
-                </tr>
-                <tr>
-                    <th>Region</th>
-                    <td>@Model.Client?.Region</td>
+                    <td>@Model.ClientName</td>
                 </tr>
                 <tr>
                     <th>Service Level</th>
@@ -461,7 +455,7 @@
                 <tr>
                     <th>Status</th>
                     <td>
-                        <span class="status-badge @(Model.Status == ContractStatus.Active ? "status-active" : Model.Status == ContractStatus.Expired ? "status-expired" : Model.Status == ContractStatus.OnHold ? "status-onhold" : "status-inactive")">
+                        <span class="status-badge @(Model.Status == "Active" ? "status-active" : Model.Status == "Expired" ? "status-expired" : Model.Status == "OnHold" ? "status-onhold" : "status-inactive")">
                             @Model.Status
                         </span>
                     </td>
@@ -480,12 +474,16 @@
             <!-- Change Status -->
             <div class="action-section">
                 <div class="action-section-label">Change Contract Status</div>
-                <form asp-action="ChangeStatus" asp-route-id="@Model.Id" method="post" class="d-flex gap-2 flex-wrap align-items-center">
+                <form asp-action="ChangeStatus" asp-route-id="@Model.Id"
+                      method="post" class="d-flex gap-2 flex-wrap align-items-center">
                     @Html.AntiForgeryToken()
                     <select name="newStatus" class="form-select w-auto">
-                        @foreach (var s in Enum.GetValues<ContractStatus>())
+                        @foreach (var s in new[] { "Draft", "Active", "Expired", "OnHold" })
                         {
-                            <option value="@s" selected="@(Model.Status == s)">@s</option>
+                            <option value="@s"
+                                    selected="@(Model.Status == s)">
+                                @s
+                            </option>
                         }
                     </select>
                     <button type="submit" class="btn-update">
@@ -497,13 +495,16 @@
             <!-- Signed Agreement -->
             <div class="action-section">
                 <div class="action-section-label">Signed Agreement</div>
-                @if (Model.SignedAgreementPath != null)
+                @if (Model.HasSignedAgreement)
                 {
                     <div class="pdf-block">
                         <i class="bi bi-file-earmark-pdf pdf-icon"></i>
                         <div>
-                            <div class="pdf-filename">@Model.SignedAgreementFileName</div>
-                            <a asp-action="Download" asp-route-id="@Model.Id" class="btn-download">
+                            <div class="pdf-filename">
+                                @(Model.SignedAgreementFileName ?? "agreement.pdf")
+                            </div>
+                            <a asp-action="Download" asp-route-id="@Model.Id"
+                               class="btn-download">
                                 <i class="bi bi-download"></i> Download PDF
                             </a>
                         </div>
@@ -512,15 +513,16 @@
                 else
                 {
                     <div class="no-file-note">
-                        <i class="bi bi-exclamation-circle"></i> No signed agreement uploaded yet.
+                        <i class="bi bi-exclamation-circle"></i>
+                        No signed agreement uploaded yet.
                     </div>
                 }
             </div>
 
-            <!-- Service Requests -->
+            <!-- New Service Request -->
             <div class="action-section">
                 <div class="action-section-label">Service Requests</div>
-                @if (Model.Status == ContractStatus.Active || Model.Status == ContractStatus.Draft)
+                @if (Model.Status == "Active" || Model.Status == "Draft")
                 {
                     <a asp-controller="ServiceRequests" asp-action="Create"
                        asp-route-contractId="@Model.Id"
@@ -532,7 +534,8 @@
                 {
                     <div class="alert-locked">
                         <i class="bi bi-lock"></i>
-                        Service requests cannot be created for <strong>@Model.Status</strong> contracts.
+                        Service requests cannot be created for
+                        <strong>@Model.Status</strong> contracts.
                     </div>
                 }
             </div>
@@ -544,7 +547,8 @@
         <div class="sr-card">
             <div class="info-card-header">
                 <div class="header-left">
-                    <i class="bi bi-clipboard-check"></i> Service Requests on this Contract
+                    <i class="bi bi-clipboard-check"></i>
+                    Service Requests on this Contract
                 </div>
                 <span class="count-chip">@Model.ServiceRequests.Count total</span>
             </div>
@@ -571,23 +575,32 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var sr in Model.ServiceRequests.OrderByDescending(s => s.CreatedAt))
+                        @foreach (var sr in Model.ServiceRequests
+                       .OrderByDescending(s => s.CreatedAt))
                         {
                             <tr>
                                 <td><span class="sr-id">#@sr.Id</span></td>
                                 <td>@sr.Description</td>
                                 <td>$@sr.CostUsd.ToString("N2")</td>
                                 <td>R @sr.CostZar.ToString("N2")</td>
-                                <td><span class="rate-cell">@sr.ExchangeRateUsed.ToString("F4")</span></td>
                                 <td>
-                                    <span class="status-badge @(sr.Status == ServiceRequestStatus.Completed ? "sr-status-completed" : sr.Status == ServiceRequestStatus.Cancelled ? "sr-status-cancelled" : sr.Status == ServiceRequestStatus.InProgress ? "sr-status-inprogress" : "sr-status-default")">
+                                    <span class="rate-cell">
+                                        @sr.ExchangeRateUsed.ToString("F4")
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="status-badge @(sr.Status == "Completed" ? "sr-status-completed" : sr.Status == "Cancelled" ? "sr-status-cancelled" : sr.Status == "InProgress" ? "sr-status-inprogress" : "sr-status-default")">
                                         @sr.Status
                                     </span>
                                 </td>
-                                <td style="font-size:0.8rem; color:#94a3b8;">@sr.CreatedAt.ToShortDateString()</td>
+                                <td style="font-size:0.8rem; color:#94a3b8;">
+                                    @sr.CreatedAt.ToShortDateString()
+                                </td>
                                 <td>
-                                    <a asp-controller="ServiceRequests" asp-action="Details"
-                                       asp-route-id="@sr.Id" class="btn-view">
+                                    <a asp-controller="ServiceRequests"
+                                       asp-action="Details"
+                                       asp-route-id="@sr.Id"
+                                       class="btn-view">
                                         <i class="bi bi-eye"></i> View
                                     </a>
                                 </td>
@@ -600,5 +613,3 @@
     </div>
 
 </div>
-
-@using PROG7313_TechMove.Models

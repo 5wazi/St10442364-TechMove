@@ -1,0 +1,72 @@
+﻿using Microsoft.EntityFrameworkCore;
+using TechMove.Api.Models;
+
+namespace TechMove.Api.Data
+{
+    public class ApplicationDbContext : DbContext
+    {
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+            : base(options) { }
+
+        public DbSet<Client> Clients => Set<Client>();
+        public DbSet<Contract> Contracts => Set<Contract>();
+        public DbSet<ServiceRequest> ServiceRequests => Set<ServiceRequest>();
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Client>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Name).IsRequired().HasMaxLength(200);
+                entity.Property(e => e.ContactDetails).IsRequired().HasMaxLength(500);
+                entity.Property(e => e.Region).IsRequired().HasMaxLength(100);
+            });
+
+            modelBuilder.Entity<Contract>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.ServiceLevel).IsRequired().HasMaxLength(200);
+                entity.Property(e => e.Status)
+                    .HasConversion<string>()
+                    .IsRequired();
+
+                entity.HasOne(e => e.Client)
+                    .WithMany(c => c.Contracts)
+                    .HasForeignKey(e => e.ClientId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+            modelBuilder.Entity<ServiceRequest>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Description).IsRequired().HasMaxLength(1000);
+                entity.Property(e => e.CostUsd).HasColumnType("decimal(18,2)");
+                entity.Property(e => e.CostZar).HasColumnType("decimal(18,2)");
+                entity.Property(e => e.ExchangeRateUsed).HasColumnType("decimal(18,6)");
+                entity.Property(e => e.Status)
+                    .HasConversion<string>()
+                    .IsRequired();
+
+                entity.HasOne(e => e.Contract)
+                    .WithMany(c => c.ServiceRequests)
+                    .HasForeignKey(e => e.ContractId)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
+
+            // Seed data
+            modelBuilder.Entity<Client>().HasData(
+                new Client { Id = 1, Name = "TransAfrica Logistics", ContactDetails = "contact@transafrica.co.za | +27 31 765 1122", Region = "Africa" },
+                new Client { Id = 2, Name = "Nordic Freight Solutions", ContactDetails = "info@nordicfreight.se | +46 8 442 7788", Region = "Europe" },
+                new Client { Id = 3, Name = "Atlantic Cargo Lines", ContactDetails = "support@atlanticcargo.com | +1 212 555 9812", Region = "Americas" }
+            );
+
+            modelBuilder.Entity<Contract>().HasData(
+                new Contract { Id = 1, ClientId = 1, StartDate = new DateTime(2025, 1, 1), EndDate = new DateTime(2026, 12, 31), Status = ContractStatus.Active, ServiceLevel = "Enterprise Supply Chain", SignedAgreementPath = null, SignedAgreementFileName = null },
+                new Contract { Id = 2, ClientId = 2, StartDate = new DateTime(2024, 6, 1), EndDate = new DateTime(2025, 5, 31), Status = ContractStatus.Expired, ServiceLevel = "Standard Freight", SignedAgreementPath = null, SignedAgreementFileName = null },
+                new Contract { Id = 3, ClientId = 3, StartDate = new DateTime(2026, 1, 1), EndDate = new DateTime(2026, 12, 31), Status = ContractStatus.Draft, ServiceLevel = "Express Delivery", SignedAgreementPath = null, SignedAgreementFileName = null }
+            );
+        }
+    }
+}

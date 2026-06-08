@@ -1,0 +1,19 @@
+# Build output
+**/bin/
+**/obj/
+
+# Visual Studio files
+**/.vs/
+**/*.user
+**/*.suo
+
+# Git
+.git/
+.gitignore
+
+# Test project (not needed in containers)
+TechMove.Tests/
+
+# Local settings that should not go into Docker
+**/appsettings.Development.json
+**/launchSettings.json

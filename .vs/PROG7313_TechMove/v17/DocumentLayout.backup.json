@@ -3,8 +3,52 @@
   "WorkspaceRootPath": "C:\\Users\\samke\\source\\repos\\St10442364-TechMove\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D03BA9F7-32C3-435F-AE34-F5627D062AEA}|PROG7313_TechMove\\PROG7313_TechMove.csproj|c:\\users\\samke\\source\\repos\\st10442364-techmove\\prog7313_techmove\\prog7313_techmove.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{D03BA9F7-32C3-435F-AE34-F5627D062AEA}|PROG7313_TechMove\\PROG7313_TechMove.csproj|solutionrelative:prog7313_techmove\\prog7313_techmove.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{C27DDA60-22C7-4512-B8DF-09F544E88AEE}|TestProject\\TestProject.csproj|c:\\users\\samke\\source\\repos\\st10442364-techmove\\testproject\\integration\\servicerequestsapiintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C27DDA60-22C7-4512-B8DF-09F544E88AEE}|TestProject\\TestProject.csproj|solutionrelative:testproject\\integration\\servicerequestsapiintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C27DDA60-22C7-4512-B8DF-09F544E88AEE}|TestProject\\TestProject.csproj|c:\\users\\samke\\source\\repos\\st10442364-techmove\\testproject\\integration\\integrationtesthelpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C27DDA60-22C7-4512-B8DF-09F544E88AEE}|TestProject\\TestProject.csproj|solutionrelative:testproject\\integration\\integrationtesthelpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C27DDA60-22C7-4512-B8DF-09F544E88AEE}|TestProject\\TestProject.csproj|c:\\users\\samke\\source\\repos\\st10442364-techmove\\testproject\\integration\\contractsapiintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C27DDA60-22C7-4512-B8DF-09F544E88AEE}|TestProject\\TestProject.csproj|solutionrelative:testproject\\integration\\contractsapiintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C27DDA60-22C7-4512-B8DF-09F544E88AEE}|TestProject\\TestProject.csproj|c:\\users\\samke\\source\\repos\\st10442364-techmove\\testproject\\integration\\clientsapiintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C27DDA60-22C7-4512-B8DF-09F544E88AEE}|TestProject\\TestProject.csproj|solutionrelative:testproject\\integration\\clientsapiintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D03BA9F7-32C3-435F-AE34-F5627D062AEA}|PROG7313_TechMove\\PROG7313_TechMove.csproj|c:\\users\\samke\\source\\repos\\st10442364-techmove\\prog7313_techmove\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D03BA9F7-32C3-435F-AE34-F5627D062AEA}|PROG7313_TechMove\\PROG7313_TechMove.csproj|solutionrelative:prog7313_techmove\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D03BA9F7-32C3-435F-AE34-F5627D062AEA}|PROG7313_TechMove\\PROG7313_TechMove.csproj|c:\\users\\samke\\source\\repos\\st10442364-techmove\\prog7313_techmove\\controllers\\contractscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D03BA9F7-32C3-435F-AE34-F5627D062AEA}|PROG7313_TechMove\\PROG7313_TechMove.csproj|solutionrelative:prog7313_techmove\\controllers\\contractscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1EB3505A-13EE-470C-944A-858147C6B8D1}|TechMove.Api\\TechMove.Api.csproj|c:\\users\\samke\\source\\repos\\st10442364-techmove\\techmove.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1EB3505A-13EE-470C-944A-858147C6B8D1}|TechMove.Api\\TechMove.Api.csproj|solutionrelative:techmove.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D03BA9F7-32C3-435F-AE34-F5627D062AEA}|PROG7313_TechMove\\PROG7313_TechMove.csproj|c:\\users\\samke\\source\\repos\\st10442364-techmove\\prog7313_techmove\\services\\contractservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D03BA9F7-32C3-435F-AE34-F5627D062AEA}|PROG7313_TechMove\\PROG7313_TechMove.csproj|solutionrelative:prog7313_techmove\\services\\contractservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D03BA9F7-32C3-435F-AE34-F5627D062AEA}|PROG7313_TechMove\\PROG7313_TechMove.csproj|c:\\users\\samke\\source\\repos\\st10442364-techmove\\prog7313_techmove\\views\\contracts\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D03BA9F7-32C3-435F-AE34-F5627D062AEA}|PROG7313_TechMove\\PROG7313_TechMove.csproj|solutionrelative:prog7313_techmove\\views\\contracts\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1EB3505A-13EE-470C-944A-858147C6B8D1}|TechMove.Api\\TechMove.Api.csproj|c:\\users\\samke\\source\\repos\\st10442364-techmove\\techmove.api\\controllers\\contractscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1EB3505A-13EE-470C-944A-858147C6B8D1}|TechMove.Api\\TechMove.Api.csproj|solutionrelative:techmove.api\\controllers\\contractscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C27DDA60-22C7-4512-B8DF-09F544E88AEE}|TestProject\\TestProject.csproj|c:\\users\\samke\\source\\repos\\st10442364-techmove\\testproject\\testproject.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{C27DDA60-22C7-4512-B8DF-09F544E88AEE}|TestProject\\TestProject.csproj|solutionrelative:testproject\\testproject.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1EB3505A-13EE-470C-944A-858147C6B8D1}|TechMove.Api\\TechMove.Api.csproj|c:\\users\\samke\\source\\repos\\st10442364-techmove\\techmove.api\\patterns\\factory\\contractfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1EB3505A-13EE-470C-944A-858147C6B8D1}|TechMove.Api\\TechMove.Api.csproj|solutionrelative:techmove.api\\patterns\\factory\\contractfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,7 +58,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -25,20 +69,159 @@
               "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\samke\\source\\repos\\St10442364-TechMove\\PROG7313_TechMove\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "PROG7313_TechMove\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\samke\\source\\repos\\St10442364-TechMove\\PROG7313_TechMove\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "PROG7313_TechMove\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-08T14:14:49.185Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ContractsController.cs",
+              "DocumentMoniker": "C:\\Users\\samke\\source\\repos\\St10442364-TechMove\\PROG7313_TechMove\\Controllers\\ContractsController.cs",
+              "RelativeDocumentMoniker": "PROG7313_TechMove\\Controllers\\ContractsController.cs",
+              "ToolTip": "C:\\Users\\samke\\source\\repos\\St10442364-TechMove\\PROG7313_TechMove\\Controllers\\ContractsController.cs",
+              "RelativeToolTip": "PROG7313_TechMove\\Controllers\\ContractsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-08T14:14:43.449Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ContractService.cs",
+              "DocumentMoniker": "C:\\Users\\samke\\source\\repos\\St10442364-TechMove\\PROG7313_TechMove\\Services\\ContractService.cs",
+              "RelativeDocumentMoniker": "PROG7313_TechMove\\Services\\ContractService.cs",
+              "ToolTip": "C:\\Users\\samke\\source\\repos\\St10442364-TechMove\\PROG7313_TechMove\\Services\\ContractService.cs",
+              "RelativeToolTip": "PROG7313_TechMove\\Services\\ContractService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-08T13:39:37.319Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\samke\\source\\repos\\St10442364-TechMove\\PROG7313_TechMove\\Views\\Contracts\\Details.cshtml",
+              "RelativeDocumentMoniker": "PROG7313_TechMove\\Views\\Contracts\\Details.cshtml",
+              "ToolTip": "C:\\Users\\samke\\source\\repos\\St10442364-TechMove\\PROG7313_TechMove\\Views\\Contracts\\Details.cshtml",
+              "RelativeToolTip": "PROG7313_TechMove\\Views\\Contracts\\Details.cshtml",
+              "ViewState": "AgIAANQBAAAAAAAAAAAAAOcBAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-08T13:21:54.996Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ContractsController.cs",
+              "DocumentMoniker": "C:\\Users\\samke\\source\\repos\\St10442364-TechMove\\TechMove.Api\\Controllers\\ContractsController.cs",
+              "RelativeDocumentMoniker": "TechMove.Api\\Controllers\\ContractsController.cs",
+              "ToolTip": "C:\\Users\\samke\\source\\repos\\St10442364-TechMove\\TechMove.Api\\Controllers\\ContractsController.cs",
+              "RelativeToolTip": "TechMove.Api\\Controllers\\ContractsController.cs",
+              "ViewState": "AgIAAGIAAAAAAAAAAAAgwHgAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-08T13:16:21.306Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ContractFactory.cs",
+              "DocumentMoniker": "C:\\Users\\samke\\source\\repos\\St10442364-TechMove\\TechMove.Api\\Patterns\\Factory\\ContractFactory.cs",
+              "RelativeDocumentMoniker": "TechMove.Api\\Patterns\\Factory\\ContractFactory.cs",
+              "ToolTip": "C:\\Users\\samke\\source\\repos\\St10442364-TechMove\\TechMove.Api\\Patterns\\Factory\\ContractFactory.cs",
+              "RelativeToolTip": "TechMove.Api\\Patterns\\Factory\\ContractFactory.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAAwBsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-07T17:11:24.746Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\samke\\source\\repos\\St10442364-TechMove\\TechMove.Api\\Program.cs",
+              "RelativeDocumentMoniker": "TechMove.Api\\Program.cs",
+              "ToolTip": "C:\\Users\\samke\\source\\repos\\St10442364-TechMove\\TechMove.Api\\Program.cs",
+              "RelativeToolTip": "TechMove.Api\\Program.cs",
+              "ViewState": "AgIAAHwAAAAAAAAAAAAgwJ0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-07T17:06:06.461Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "PROG7313_TechMove.csproj",
-              "DocumentMoniker": "C:\\Users\\samke\\Source\\Repos\\St10442364-TechMove\\PROG7313_TechMove\\PROG7313_TechMove.csproj",
-              "RelativeDocumentMoniker": "PROG7313_TechMove\\PROG7313_TechMove.csproj",
-              "ToolTip": "C:\\Users\\samke\\Source\\Repos\\St10442364-TechMove\\PROG7313_TechMove\\PROG7313_TechMove.csproj",
-              "RelativeToolTip": "PROG7313_TechMove\\PROG7313_TechMove.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "ServiceRequestsApiIntegrationTests.cs",
+              "DocumentMoniker": "C:\\Users\\samke\\source\\repos\\St10442364-TechMove\\TestProject\\Integration\\ServiceRequestsApiIntegrationTests.cs",
+              "RelativeDocumentMoniker": "TestProject\\Integration\\ServiceRequestsApiIntegrationTests.cs",
+              "ToolTip": "C:\\Users\\samke\\source\\repos\\St10442364-TechMove\\TestProject\\Integration\\ServiceRequestsApiIntegrationTests.cs",
+              "RelativeToolTip": "TestProject\\Integration\\ServiceRequestsApiIntegrationTests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-07T16:50:54.182Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ContractsApiIntegrationTests.cs",
+              "DocumentMoniker": "C:\\Users\\samke\\source\\repos\\St10442364-TechMove\\TestProject\\Integration\\ContractsApiIntegrationTests.cs",
+              "RelativeDocumentMoniker": "TestProject\\Integration\\ContractsApiIntegrationTests.cs",
+              "ToolTip": "C:\\Users\\samke\\source\\repos\\St10442364-TechMove\\TestProject\\Integration\\ContractsApiIntegrationTests.cs",
+              "RelativeToolTip": "TestProject\\Integration\\ContractsApiIntegrationTests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-07T16:49:54.853Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ClientsApiIntegrationTests.cs",
+              "DocumentMoniker": "C:\\Users\\samke\\source\\repos\\St10442364-TechMove\\TestProject\\Integration\\ClientsApiIntegrationTests.cs",
+              "RelativeDocumentMoniker": "TestProject\\Integration\\ClientsApiIntegrationTests.cs",
+              "ToolTip": "C:\\Users\\samke\\source\\repos\\St10442364-TechMove\\TestProject\\Integration\\ClientsApiIntegrationTests.cs",
+              "RelativeToolTip": "TestProject\\Integration\\ClientsApiIntegrationTests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-07T16:49:10.817Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IntegrationTestHelpers.cs",
+              "DocumentMoniker": "C:\\Users\\samke\\source\\repos\\St10442364-TechMove\\TestProject\\Integration\\IntegrationTestHelpers.cs",
+              "RelativeDocumentMoniker": "TestProject\\Integration\\IntegrationTestHelpers.cs",
+              "ToolTip": "C:\\Users\\samke\\source\\repos\\St10442364-TechMove\\TestProject\\Integration\\IntegrationTestHelpers.cs",
+              "RelativeToolTip": "TestProject\\Integration\\IntegrationTestHelpers.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAMMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-07T16:47:28.696Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "TestProject.csproj",
+              "DocumentMoniker": "C:\\Users\\samke\\Source\\Repos\\St10442364-TechMove\\TestProject\\TestProject.csproj",
+              "RelativeDocumentMoniker": "TestProject\\TestProject.csproj",
+              "ToolTip": "C:\\Users\\samke\\Source\\Repos\\St10442364-TechMove\\TestProject\\TestProject.csproj",
+              "RelativeToolTip": "TestProject\\TestProject.csproj",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAABYAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-04-22T04:01:17.307Z",
+              "WhenOpened": "2026-06-07T16:44:53.741Z",
               "EditorCaption": ""
             }
           ]

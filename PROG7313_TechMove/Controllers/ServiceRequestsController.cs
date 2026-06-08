@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PROG7313_TechMove.Models;
-using PROG7313_TechMove.Patterns.Repository;
 using PROG7313_TechMove.Services;
 using PROG7313_TechMove.ViewModels;
 
@@ -8,46 +6,47 @@ namespace PROG7313_TechMove.Controllers
 {
     public class ServiceRequestsController : Controller
     {
-        private readonly IServiceRequestService _srService;
-        private readonly IServiceRequestRepository _srRepo;
-        private readonly IContractRepository _contractRepo;
-        private readonly ICurrencyService _currencyService;
+        private readonly ApiClient _api;
 
-        public ServiceRequestsController(
-            IServiceRequestService srService,
-            IServiceRequestRepository srRepo,
-            IContractRepository contractRepo,
-            ICurrencyService currencyService)
+        public ServiceRequestsController(ApiClient api)
         {
-            _srService = srService;
-            _srRepo = srRepo;
-            _contractRepo = contractRepo;
-            _currencyService = currencyService;
+            _api = api;
+        }
+
+        private IActionResult? RequireAuth()
+        {
+            if (string.IsNullOrEmpty(Request.Cookies["techmove_jwt"]))
+                return RedirectToAction("Login", "Account",
+                    new { returnUrl = Request.Path.ToString() });
+            return null;
         }
 
         // GET: /ServiceRequests
         public async Task<IActionResult> Index()
         {
-            var contracts = await _contractRepo.GetAllAsync();
-            var requests = new List<ServiceRequest>();
-            foreach (var c in contracts)
-            {
-                var srs = await _srRepo.GetByContractIdAsync(c.Id);
-                requests.AddRange(srs);
-            }
-            return View(requests.OrderByDescending(r => r.CreatedAt));
+            var auth = RequireAuth();
+            if (auth != null) return auth;
+
+            // Fetch all contracts and flatten their service requests into one list
+            var contracts = await _api.GetContractsAsync();
+            var allRequests = contracts
+                .SelectMany(c => c.ServiceRequests)
+                .OrderByDescending(r => r.CreatedAt)
+                .ToList();
+
+            return View(allRequests);
         }
 
         // GET: /ServiceRequests/Create?contractId=1
         public async Task<IActionResult> Create(int contractId)
         {
-            var contract = await _contractRepo.GetByIdAsync(contractId);
+            var auth = RequireAuth();
+            if (auth != null) return auth;
+
+            var contract = await _api.GetContractAsync(contractId);
             if (contract == null) return NotFound();
 
-            decimal rate;
-            try { rate = await _currencyService.GetUsdToZarRateAsync(); }
-            catch { rate = 18.50m; }
-
+            var rate = await _api.GetExchangeRateAsync();
             ViewBag.Contract = contract;
             ViewBag.CurrentRate = rate;
             return View(new ServiceRequestCreateViewModel { ContractId = contractId });
@@ -58,32 +57,36 @@ namespace PROG7313_TechMove.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ServiceRequestCreateViewModel vm)
         {
+            var auth = RequireAuth();
+            if (auth != null) return auth;
+
             if (!ModelState.IsValid)
             {
-                ViewBag.Contract = await _contractRepo.GetByIdAsync(vm.ContractId);
-                ViewBag.CurrentRate = await _currencyService.GetUsdToZarRateAsync();
+                ViewBag.Contract = await _api.GetContractAsync(vm.ContractId);
+                ViewBag.CurrentRate = await _api.GetExchangeRateAsync();
                 return View(vm);
             }
 
-            try
+            var (ok, error) = await _api.CreateServiceRequestAsync(vm);
+            if (!ok)
             {
-                await _srService.CreateAsync(vm.ContractId, vm.Description, vm.CostUsd);
-                TempData["Success"] = "Service request submitted successfully.";
-                return RedirectToAction("Details", "Contracts", new { id = vm.ContractId });
-            }
-            catch (InvalidOperationException ex)
-            {
-                ModelState.AddModelError(string.Empty, ex.Message);
-                ViewBag.Contract = await _contractRepo.GetByIdAsync(vm.ContractId);
-                ViewBag.CurrentRate = await _currencyService.GetUsdToZarRateAsync();
+                ModelState.AddModelError("", error ?? "Failed to submit service request.");
+                ViewBag.Contract = await _api.GetContractAsync(vm.ContractId);
+                ViewBag.CurrentRate = await _api.GetExchangeRateAsync();
                 return View(vm);
             }
+
+            TempData["Success"] = "Service request submitted successfully.";
+            return RedirectToAction("Details", "Contracts", new { id = vm.ContractId });
         }
 
         // GET: /ServiceRequests/Details/5
         public async Task<IActionResult> Details(int id)
         {
-            var sr = await _srService.GetByIdAsync(id);
+            var auth = RequireAuth();
+            if (auth != null) return auth;
+
+            var sr = await _api.GetServiceRequestAsync(id);
             if (sr == null) return NotFound();
             return View(sr);
         }

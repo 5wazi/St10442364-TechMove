@@ -1,4 +1,4 @@
-﻿@model PROG7313_TechMove.Models.Client
+﻿@model CreateClientViewModel
 @{
     ViewData["Title"] = "New Client";
 }
@@ -84,6 +84,7 @@
         background: #f8fafc;
         color: var(--text-main);
         transition: border-color 0.15s, box-shadow 0.15s;
+        width: 100%;
     }
 
         .form-control:focus, .form-select:focus {
@@ -153,19 +154,25 @@
             </div>
             <div class="form-card-body">
                 <form asp-action="Create">
-                    <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+                    <div asp-validation-summary="ModelOnly"
+                         class="alert alert-danger"></div>
 
                     <div class="mb-3">
                         <label asp-for="Name" class="form-label"></label>
-                        <input asp-for="Name" class="form-control" placeholder="e.g. Global Freight Ltd" />
-                        <span asp-validation-for="Name" class="text-danger small"></span>
+                        <input asp-for="Name" class="form-control"
+                               placeholder="e.g. Global Freight Ltd" />
+                        <span asp-validation-for="Name"
+                              class="text-danger small"></span>
                     </div>
 
                     <div class="mb-3">
                         <label asp-for="ContactDetails" class="form-label"></label>
-                        <textarea asp-for="ContactDetails" class="form-control" rows="3"
-                                  placeholder="e.g. info@company.com | +27 11 000 0000"></textarea>
-                        <span asp-validation-for="ContactDetails" class="text-danger small"></span>
+                        <textarea asp-for="ContactDetails" class="form-control"
+                                  rows="3"
+                                  placeholder="e.g. info@company.com | +27 11 000 0000">
+                        </textarea>
+                        <span asp-validation-for="ContactDetails"
+                              class="text-danger small"></span>
                     </div>
 
                     <div class="mb-3">
@@ -178,7 +185,8 @@
                             <option>Asia Pacific</option>
                             <option>Middle East</option>
                         </select>
-                        <span asp-validation-for="Region" class="text-danger small"></span>
+                        <span asp-validation-for="Region"
+                              class="text-danger small"></span>
                     </div>
 
                     <div class="form-actions">

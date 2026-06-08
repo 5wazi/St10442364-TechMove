@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PROG7313_TechMove.Models.Client>
+﻿@model IEnumerable<ClientViewModel>
 @{
     ViewData["Title"] = "Clients";
 }
@@ -212,11 +212,18 @@
                     <tr>
                         <td><span class="client-id">#@c.Id</span></td>
                         <td><span class="client-name">@c.Name</span></td>
-                        <td style="font-size:0.83rem; color:#64748b;">@c.ContactDetails</td>
+                        <td style="font-size:0.83rem; color:#64748b;">
+                            @c.ContactDetails
+                        </td>
                         <td><span class="badge-region">@c.Region</span></td>
-                        <td><span class="badge-contracts">@c.Contracts.Count contract(s)</span></td>
                         <td>
-                            <a asp-action="Details" asp-route-id="@c.Id" class="btn-details">
+                            <span class="badge-contracts">
+                                @c.ContractCount contract(s)
+                            </span>
+                        </td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@c.Id"
+                               class="btn-details">
                                 <i class="bi bi-eye"></i> Details
                             </a>
                         </td>

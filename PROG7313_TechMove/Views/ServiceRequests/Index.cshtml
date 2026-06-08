@@ -1,5 +1,4 @@
-﻿@model IEnumerable<PROG7313_TechMove.Models.ServiceRequest>
-@using PROG7313_TechMove.Models
+﻿@model IEnumerable<ServiceRequestViewModel>
 @{
     ViewData["Title"] = "Service Requests";
 }
@@ -37,21 +36,18 @@
             color: var(--accent);
         }
 
-    /* CARD FIX */
     .sr-card {
         background: #fff;
         border: 1px solid var(--border);
         border-radius: 10px;
-        overflow-x: auto; /* key fix */
+        overflow: hidden;
         box-shadow: 0 1px 4px rgba(0,0,0,0.04);
     }
 
-    /* TABLE FIX */
     .sr-table {
         width: 100%;
         border-collapse: collapse;
         margin: 0;
-        min-width: 1000px; /* prevents squashing */
     }
 
         .sr-table thead tr {
@@ -113,15 +109,13 @@
         color: var(--text-main);
     }
 
-    /* FIXED DESCRIPTION */
     .desc-cell {
-        max-width: 320px;
-        white-space: normal; /* allow wrapping */
-        overflow: visible;
-        text-overflow: unset;
+        max-width: 200px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
         color: #64748b;
         font-size: 0.85rem;
-        word-break: break-word;
     }
 
     .cost-usd {
@@ -269,12 +263,14 @@
                                 #@sr.ContractId
                             </a>
                         </td>
-                        <td><span class="client-name">@sr.Contract?.Client?.Name</span></td>
+                        <td>
+                            <span class="client-name">@sr.ContractClientName</span>
+                        </td>
                         <td><span class="desc-cell">@sr.Description</span></td>
                         <td><span class="cost-usd">$@sr.CostUsd.ToString("N2")</span></td>
                         <td><span class="cost-zar">R @sr.CostZar.ToString("N2")</span></td>
                         <td>
-                            <span class="status-badge @(sr.Status == ServiceRequestStatus.Completed ? "sr-status-completed" : sr.Status == ServiceRequestStatus.Cancelled ? "sr-status-cancelled" : sr.Status == ServiceRequestStatus.InProgress ? "sr-status-inprogress" : "sr-status-default")">
+                            <span class="status-badge @(sr.Status == "Completed" ? "sr-status-completed" : sr.Status == "Cancelled" ? "sr-status-cancelled" : sr.Status == "InProgress" ? "sr-status-inprogress" : "sr-status-default")">
                                 @sr.Status
                             </span>
                         </td>

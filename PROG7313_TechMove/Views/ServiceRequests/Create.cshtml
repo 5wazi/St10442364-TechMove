@@ -1,7 +1,6 @@
-﻿@model PROG7313_TechMove.ViewModels.ServiceRequestCreateViewModel
-@using PROG7313_TechMove.Models
+﻿@model ServiceRequestCreateViewModel
 @{
-    var contract = ViewBag.Contract as Contract;
+    var contract = ViewBag.Contract as ContractViewModel;
     ViewData["Title"] = "New Service Request";
 }
 
@@ -38,7 +37,6 @@
             font-size: 1.3rem;
         }
 
-    /* Contract context banner */
     .contract-banner {
         background: #fff;
         border: 1px solid var(--border);
@@ -125,7 +123,6 @@
         font-weight: 500;
     }
 
-    /* Blocked alert */
     .alert-blocked {
         background: #fef2f2;
         border: 1px solid #fca5a5;
@@ -145,7 +142,6 @@
             margin-top: 1px;
         }
 
-    /* Form card */
     .form-card {
         background: #fff;
         border: 1px solid var(--border);
@@ -303,35 +299,36 @@
         <div class="accent-line"></div>
         <h2><i class="bi bi-clipboard-plus"></i> New Service Request</h2>
     </div>
-    <a asp-controller="Contracts" asp-action="Details" asp-route-id="@contract?.Id"
-       class="btn btn-secondary">
+    <a asp-controller="Contracts" asp-action="Details"
+       asp-route-id="@contract?.Id" class="btn btn-secondary">
         <i class="bi bi-arrow-left me-1"></i> Back to Contract
     </a>
 </div>
 
-<!-- Contract context banner -->
+@* Contract context banner *@
 <div class="contract-banner">
     <i class="bi bi-file-earmark-text"></i>
     <div class="contract-banner-text">
         <strong>Contract #@contract?.Id</strong>
         <span class="banner-sep">—</span>
-        @contract?.Client?.Name
+        @contract?.ClientName
         <span class="@(contract?.ServiceLevel == "Gold" ? "badge-gold" : contract?.ServiceLevel == "Silver" ? "badge-silver" : "badge-dark")">
             @contract?.ServiceLevel
         </span>
-        <span class="@(contract?.Status == ContractStatus.Active ? "badge-active" : "badge-danger")">
+        <span class="@(contract?.Status == "Active" ? "badge-active" : "badge-danger")">
             @contract?.Status
         </span>
     </div>
 </div>
 
-@if (contract?.Status == ContractStatus.Expired || contract?.Status == ContractStatus.OnHold)
+@if (contract?.Status == "Expired" || contract?.Status == "OnHold")
 {
     <div class="alert-blocked">
         <i class="bi bi-lock-fill"></i>
         <div>
-            <strong>Blocked:</strong> Service requests cannot be created for contracts with status
-            <strong>@contract.Status</strong>. Please activate the contract first.
+            <strong>Blocked:</strong> Service requests cannot be created for contracts
+            with status <strong>@contract.Status</strong>.
+            Please activate the contract first.
         </div>
     </div>
 }
@@ -355,7 +352,6 @@ else
                             <span asp-validation-for="Description" class="text-danger small"></span>
                         </div>
 
-                        <!-- Cost USD -->
                         <div class="mb-3">
                             <label asp-for="CostUsd" class="form-label">Cost (USD)</label>
                             <div class="input-group">
@@ -366,10 +362,10 @@ else
                             <span asp-validation-for="CostUsd" class="text-danger small"></span>
                         </div>
 
-                        <!-- Live ZAR conversion -->
                         <div class="mb-4">
                             <label class="form-label-accent">
-                                <i class="bi bi-currency-exchange"></i> Converted Cost (ZAR) — Live Rate
+                                <i class="bi bi-currency-exchange"></i>
+                                Converted Cost (ZAR) — Live Rate
                             </label>
                             <div class="input-group">
                                 <span class="input-group-text-accent">R</span>
@@ -403,7 +399,7 @@ else
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
     <script>
-        const rate = @ViewBag.CurrentRate;
+        const rate     = @ViewBag.CurrentRate;
         const usdInput = document.getElementById('costUsd');
         const zarDisplay = document.getElementById('costZar');
 

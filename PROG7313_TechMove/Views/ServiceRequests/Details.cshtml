@@ -1,5 +1,4 @@
-﻿@model PROG7313_TechMove.Models.ServiceRequest
-@using PROG7313_TechMove.Models
+﻿@model ServiceRequestViewModel
 @{
     ViewData["Title"] = $"Service Request #{Model.Id}";
 }
@@ -37,7 +36,7 @@
             font-size: 1.3rem;
         }
 
-    .info-card {
+    .detail-card {
         background: #fff;
         border: 1px solid var(--border);
         border-radius: 10px;
@@ -45,12 +44,12 @@
         box-shadow: 0 1px 4px rgba(0,0,0,0.04);
     }
 
-    .info-card-header {
+    .detail-card-header {
         background: #0f172a;
-        padding: 0.85rem 1.3rem;
+        padding: 0.9rem 1.5rem;
         display: flex;
         align-items: center;
-        gap: 9px;
+        gap: 10px;
         font-family: 'IBM Plex Sans', sans-serif;
         font-weight: 500;
         font-size: 0.68rem;
@@ -59,65 +58,55 @@
         letter-spacing: 1.4px;
     }
 
-        .info-card-header i {
+        .detail-card-header i {
             color: var(--accent);
+            font-size: 0.95rem;
         }
 
-    .info-table {
+    .detail-table {
         width: 100%;
         border-collapse: collapse;
     }
 
-        .info-table tr {
-            border-bottom: 1px solid #f8fafc;
+        .detail-table tr {
+            border-bottom: 1px solid #f1f5f9;
         }
 
-            .info-table tr:last-child {
+            .detail-table tr:last-child {
                 border-bottom: none;
             }
 
-        .info-table th {
-            padding: 0.85rem 1.3rem;
-            font-size: 0.75rem;
-            font-weight: 500;
-            color: #94a3b8;
-            text-transform: uppercase;
-            letter-spacing: 0.6px;
+        .detail-table th {
+            padding: 0.85rem 1.5rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #64748b;
             width: 35%;
-            vertical-align: top;
+            background: #f8fafc;
         }
 
-        .info-table td {
-            padding: 0.85rem 1.3rem 0.85rem 0;
+        .detail-table td {
+            padding: 0.85rem 1.5rem;
             font-size: 0.875rem;
             color: var(--text-main);
-            vertical-align: top;
         }
 
-    .contract-link {
-        color: var(--accent);
-        text-decoration: none;
-        font-weight: 600;
-        transition: opacity 0.15s;
+    .cost-value {
+        font-weight: 700;
+        font-size: 1rem;
     }
 
-        .contract-link:hover {
-            opacity: 0.75;
-        }
-
     .cost-usd {
-        font-weight: 600;
-        color: var(--text-main);
+        color: #0f172a;
     }
 
     .cost-zar {
-        font-weight: 600;
         color: #166534;
     }
 
-    .rate-text {
-        font-size: 0.83rem;
-        color: #94a3b8;
+    .rate-value {
+        color: #64748b;
+        font-size: 0.85rem;
     }
 
     .status-badge {
@@ -151,6 +140,16 @@
         color: #64748b;
         border: 1px solid #e2e8f0;
     }
+
+    .contract-link {
+        color: var(--accent);
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+        .contract-link:hover {
+            opacity: 0.75;
+        }
 </style>
 
 <div class="page-header">
@@ -158,25 +157,29 @@
         <div class="accent-line"></div>
         <h2><i class="bi bi-clipboard-check"></i> Service Request #@Model.Id</h2>
     </div>
-    <a asp-controller="Contracts" asp-action="Details" asp-route-id="@Model.ContractId"
-       class="btn btn-secondary">
+    <a asp-controller="Contracts" asp-action="Details"
+       asp-route-id="@Model.ContractId" class="btn btn-secondary">
         <i class="bi bi-arrow-left me-1"></i> Back to Contract
     </a>
 </div>
 
-<div class="row g-4 justify-content-center">
-    <div class="col-md-7">
-        <div class="info-card">
-            <div class="info-card-header">
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="detail-card">
+            <div class="detail-card-header">
                 <i class="bi bi-info-circle"></i> Request Details
             </div>
-            <table class="info-table">
+            <table class="detail-table">
                 <tr>
                     <th>Contract</th>
                     <td>
                         <a asp-controller="Contracts" asp-action="Details"
                            asp-route-id="@Model.ContractId" class="contract-link">
-                            #@Model.ContractId — @Model.Contract?.Client?.Name
+                            #@Model.ContractId
+                            @if (!string.IsNullOrEmpty(Model.ContractClientName))
+                            {
+                                <span class="text-muted fw-normal"> — @Model.ContractClientName</span>
+                            }
                         </a>
                     </td>
                 </tr>
@@ -186,27 +189,35 @@
                 </tr>
                 <tr>
                     <th>Cost (USD)</th>
-                    <td><span class="cost-usd">$@Model.CostUsd.ToString("N2")</span></td>
+                    <td>
+                        <span class="cost-value cost-usd">$@Model.CostUsd.ToString("N2")</span>
+                    </td>
                 </tr>
                 <tr>
                     <th>Cost (ZAR)</th>
-                    <td><span class="cost-zar">R @Model.CostZar.ToString("N2")</span></td>
+                    <td>
+                        <span class="cost-value cost-zar">R @Model.CostZar.ToString("N2")</span>
+                    </td>
                 </tr>
                 <tr>
                     <th>Exchange Rate Used</th>
-                    <td><span class="rate-text">1 USD = @Model.ExchangeRateUsed.ToString("F4") ZAR</span></td>
+                    <td>
+                        <span class="rate-value">
+                            1 USD = @Model.ExchangeRateUsed.ToString("F4") ZAR
+                        </span>
+                    </td>
                 </tr>
                 <tr>
                     <th>Status</th>
                     <td>
-                        <span class="status-badge @(Model.Status == ServiceRequestStatus.Completed ? "sr-status-completed" : Model.Status == ServiceRequestStatus.Cancelled ? "sr-status-cancelled" : Model.Status == ServiceRequestStatus.InProgress ? "sr-status-inprogress" : "sr-status-default")">
+                        <span class="status-badge @(Model.Status == "Completed" ? "sr-status-completed" : Model.Status == "Cancelled" ? "sr-status-cancelled" : Model.Status == "InProgress" ? "sr-status-inprogress" : "sr-status-default")">
                             @Model.Status
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <th>Created</th>
-                    <td>@Model.CreatedAt.ToString("dd MMM yyyy HH:mm")</td>
+                    <td>@Model.CreatedAt.ToString("dd MMM yyyy HH:mm") UTC</td>
                 </tr>
             </table>
         </div>

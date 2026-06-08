@@ -1,11 +1,10 @@
-﻿using Moq;
+﻿using Microsoft.Extensions.Logging;
+using Moq;
 using Moq.Protected;
+using PROG7313_TechMove.Services;
 using System.Net;
 using System.Net.Http.Json;
 using System.Text;
-using PROG7313_TechMove.Services;
-using Microsoft.Extensions.Logging;
-using System.Threading;
 
 namespace TestProject
 {

@@ -1,9 +1,9 @@
 ﻿namespace PROG7313_TechMove.Services
 {
-    
+
     /// Result returned by FileService.Validate().
     /// Keeps validation logic and its outcome entirely inside the service layer.
-    
+
     public sealed class FileValidationResult
     {
         public bool IsValid { get; private init; }
@@ -18,10 +18,10 @@
 
     public interface IFileService
     {
-        
+
         /// Validates an uploaded file before saving.
         /// Returns a FileValidationResult so the caller never needs to know the rules.
-        
+
         FileValidationResult Validate(IFormFile? file);
 
         /// Saves a validated signed-agreement PDF and returns its stored path and display name.
